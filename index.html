@@ -33,11 +33,12 @@
             display: flex;
             flex-direction: column;
         }
-        .app-header { background-color: #ffffff; padding: 14px 20px 8px 20px; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
-                .app-header h1 { margin: 0; flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; line-height: 1.1; }
+         .app-header { background-color: #ffffff; padding: 14px 20px 8px 20px; display: grid; grid-template-columns: 124px 1fr 124px; align-items: center; gap: 4px; }
+                .app-header h1 { margin: 0; min-width: 0; display: flex; flex-direction: column; align-items: center; text-align: center; line-height: 1.1; }
         .app-title-main { font-size: 20px; font-weight: 800; color: var(--toss-black); letter-spacing: -0.3px; }
-        .app-title-sub { font-size: 11px; font-weight: 600; color: #7B8BA5; margin-top: 4px; letter-spacing: -0.1px; }
+        .app-title-sub { font-size: 12px; font-weight: 600; color: #7B8BA5; margin-top: 4px; letter-spacing: -0.1px; }
         .icon-btn { font-size: 15px; cursor: pointer; color: var(--toss-blue); font-weight: 600; }
+        .app-header > .icon-btn { width: 124px; text-align: left; white-space: nowrap; }
         .module-tabs {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -107,7 +108,7 @@
             color: #1F2E4D;
         }
         .premium-delta-badge {
-            border-radius: 999px;
+            border-radius: 10px;
             padding: 3px 8px;
             font-size: 11px;
             font-weight: 800;
@@ -115,7 +116,7 @@
         }
         .premium-delta-up-good { background: #E8F7EF; color: #0F766E; }
         .premium-delta-up-warn { background: #FFF4E5; color: #B45309; }
-        .premium-delta-down { background: #EEF4FF; color: #1D4ED8; }
+        .premium-delta-down { background: transparent; color: #10213D; }
         .premium-values {
             display: grid;
             grid-template-columns: 1fr auto 1fr;
@@ -165,7 +166,7 @@
             border: 1px solid #CBD5E1;
             background: #ffffff;
             color: #334155;
-            border-radius: 999px;
+            border-radius: 10px;
             width: 30px;
             height: 30px;
             display: inline-flex;
@@ -176,7 +177,7 @@
             flex-shrink: 0;
         }
         .premium-lock-overlay {
-            position: absolute;
+            position: fixed;
             inset: 0;
             background: rgba(148, 163, 184, 0.28);
             backdrop-filter: blur(2px);
@@ -201,7 +202,7 @@
             border: none;
             background: #E2E8F0;
             color: #0F172A;
-            border-radius: 999px;
+            border-radius: 10px;
             padding: 7px 12px;
             font-size: 12px;
             font-weight: 700;
@@ -211,7 +212,7 @@
         .reward-clickable-banner {
             background: linear-gradient(135deg, #F5F9FF 0%, #EEF4FF 100%);
             border: 1px solid #DCE8FA;
-            padding: 14px 16px; border-radius: 18px; margin-bottom: 18px;
+            padding: 14px 16px; border-radius: 18px; margin-bottom: calc(20px + env(safe-area-inset-bottom));
             color: #1E3A6B; cursor: pointer; box-shadow: 0 5px 16px rgba(43, 79, 132, 0.08);
         }
         .reward-banner-head { display:flex; justify-content:space-between; align-items:center; gap:10px; }
@@ -227,22 +228,104 @@
         .reward-month-progress { height:8px; margin-top:12px; background:#E4ECF7; border-radius:999px; overflow:hidden; }
         .reward-month-progress > span { display:block; height:100%; width:0; background:linear-gradient(90deg,#4B83D8,#79A9EF); border-radius:999px; transition:width .25s ease; }
         .reward-month-scale { display:flex; justify-content:space-between; margin-top:6px; font-size:10px; color:#64748B; font-weight:700; }
-        .view-badge { font-size: 11px; background: #FFFFFF; border:1px solid #C9DCF8; padding: 5px 9px; border-radius: 20px; font-weight: 800; color: #2563B8; white-space:nowrap; }        .quick-link-row { display: flex; gap: 8px; overflow-x: auto; margin-bottom: 12px; }
+        .view-badge { font-size: 11px; background: #FFFFFF; border:1px solid #C9DCF8; padding: 5px 9px; border-radius: 20px; font-weight: 800; color: #2563B8; white-space:nowrap; }
+        .header-point-mini { border: 1px solid #CFE0FA; background: #F4F8FF; color: #1D4ED8; border-radius: 999px; width: 124px; min-height: 30px; padding: 4px 8px; font-size: 10px; font-weight: 800; line-height: 1.1; cursor: pointer; justify-self: end; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+        .header-point-mini .point-label { font-size:9px; font-weight:700; color:#4A6FAF; line-height:1.1; }
+        .header-point-mini .point-value { font-size:11px; font-weight:900; color:#1D4ED8; line-height:1.2; }
+        .header-point-mini:hover { background: #EAF1FF; }
+        .quick-link-row { display: flex; gap: 8px; overflow-x: auto; margin-bottom: 12px; }
         .quick-link-btn { border: 1px solid #DCE3EA; background:#fff; color: var(--toss-black); padding: 8px 10px; border-radius: 12px; font-size: 12px; font-weight: 700; text-decoration: none; white-space: nowrap; }
         .quick-link-btn:hover { background:#F8FAFC; }
         .analysis-filter-btn { border:none; cursor:pointer; }
 
         .add-record-btn {
-            background-color: var(--toss-blue); color: white; border: none; width: 100%; padding: 16px;
-            border-radius: 16px; font-size: 16px; font-weight: 600; cursor: pointer; margin-bottom: 16px;
+            background-color: var(--toss-blue); color: white; border: none; width: 100%; padding: 13px 14px;
+            border-radius: 14px; font-size: 15px; font-weight: 700; cursor: pointer; margin-bottom: 14px;
             box-shadow: 0 6px 20px rgba(49, 130, 246, 0.15);
         }
 
         .zoom-btn-group { display: flex; gap: 4px; }
         .zoom-btn { background: var(--toss-light-grey); border: none; width: 28px; height: 28px; border-radius: 8px; font-size: 15px; font-weight: 700; color: var(--toss-black); cursor: pointer; }
+        .metric-toggle-btn { width: auto; min-width: 46px; padding: 0 10px; font-size: 12px; font-weight: 800; }
         
         .graph-scroll-container { width: 100%; overflow-x: auto; margin-top: 6px; border-radius: 14px; background-color: var(--toss-light-grey); scroll-behavior: smooth; }
         .graph-shell { position: relative; }
+        .calendar-view { margin-top: 14px; }
+        .calendar-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+        .calendar-month { color:#1F355B; font-size:15px; font-weight:800; }
+        .calendar-nav-btn { border:1px solid #DCE6F4; background:#F8FBFF; color:#30496F; border-radius:9px; width:28px; height:28px; cursor:pointer; font-weight:800; }
+        .calendar-weekdays, .calendar-grid { display:grid; grid-template-columns:repeat(7, minmax(0, 1fr)); gap:5px; }
+        .calendar-weekdays { margin-bottom:5px; color:#8A9AB2; font-size:10px; font-weight:700; text-align:center; }
+        .calendar-day { min-height:42px; border:1px solid #EDF1F7; background:#fff; border-radius:10px; padding:5px 3px; color:#526581; font-size:11px; text-align:center; cursor:pointer; }
+        .calendar-day.empty { border-color:transparent; background:transparent; cursor:default; }
+        .calendar-day.has-record { border-color:#C8D9F3; background:#F5F9FF; color:#1E3A8A; font-weight:800; }
+        .calendar-day.selected { border-color:#2F6BFF; background:#EAF1FF; box-shadow:0 0 0 2px rgba(47,107,255,.12); }
+        .calendar-dot { display:block; width:5px; height:5px; margin:4px auto 0; border-radius:50%; background:#2F6BFF; }
+        .calendar-detail { margin-top:12px; padding:12px; border-radius:13px; background:#F8FBFF; border:1px solid #E1EAF7; color:#526581; font-size:12px; line-height:1.6; }
+        .calendar-detail strong { color:#1F355B; }        .graph-period-summary { margin: 0 0 10px; color: #64748B; text-align: left; }
+        .graph-period-days { display: flex; align-items: center; gap: 5px; color: #30496F; font-size: 14px; font-weight: 900; }
+        .graph-period-range { display: inline-flex; align-items: center; gap: 5px; margin-top: 4px; font-size: 11px; font-weight: 700; }
+        .graph-period-edit { border: none; padding: 0 2px; background: transparent; color: #64748B; cursor: pointer; font-size: 13px; }
+        .graph-period-edit:hover { color: #1D4ED8; }
+        .period-setting-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 12px 0; }
+        .period-setting-label { color: #334155; font-size: 13px; font-weight: 800; }
+        .period-setting-control { display: flex; align-items: center; gap: 8px; }
+        .period-date-input { width: 100%; border: 1px solid #D7E2F1; border-radius: 10px; padding: 10px; background: #F8FAFC; color: #1F2E4D; font-size: 13px; }
+        .period-date-input:disabled { opacity: .55; cursor: not-allowed; }
+        .period-switch { position: relative; display: inline-flex; width: 42px; height: 24px; }
+        .period-switch input { opacity: 0; width: 0; height: 0; }
+        .period-switch-track { position: absolute; inset: 0; border-radius: 999px; background: #CBD5E1; cursor: pointer; transition: .2s; }
+        .period-switch-track::after { content: ''; position: absolute; width: 18px; height: 18px; left: 3px; top: 3px; border-radius: 50%; background: #FFFFFF; transition: .2s; box-shadow: 0 1px 3px rgba(15,23,42,.18); }
+        .period-switch input:checked + .period-switch-track { background: #30496F; }
+        .period-switch input:checked + .period-switch-track::after { transform: translateX(18px); }
+        .graph-summary-row {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 8px;
+            margin: 0 0 10px;
+        }
+        .graph-summary-card {
+            min-width: 0;
+            padding: 10px 8px;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            background: #FFFFFF;
+            text-align: center;
+        }
+        .graph-summary-label {
+            display: block;
+            margin-bottom: 5px;
+            color: #64748B;
+            font-size: 11px;
+            font-weight: 700;
+        }
+        .graph-summary-value {
+            display: block;
+            color: #1F2E4D;
+            font-size: 15px;
+            font-weight: 900;
+            letter-spacing: -0.2px;
+        }
+        .graph-summary-value.good { color: #0F766E; }
+        .graph-summary-message {
+            margin: 0 0 10px;
+            padding: 8px 10px;
+            border: 1px solid #A7F3D0;
+            border-radius: 10px;
+            background: #ECFDF5;
+            color: #0F766E;
+            font-size: 12px;
+            font-weight: 700;
+            line-height: 1.45;
+        }
+        .graph-y-axis-labels { position: absolute; inset: 0; pointer-events: none; z-index: 5; font-size: 9px; font-weight: 800; line-height: 1; }
+                .graph-y-axis-label { position: absolute; left: 2px; padding: 3px 4px; border: 1px solid transparent; border-radius: 5px; background: rgba(255,255,255,0.92); white-space: nowrap; cursor: pointer; pointer-events: auto; font: inherit; line-height: 1; appearance: none; }
+        .graph-y-axis-label:hover, .graph-y-axis-label:focus-visible { border-color: #C7D7EE; box-shadow: 0 2px 8px rgba(48,73,111,0.12); outline: none; }
+        .graph-y-axis-label.fat { top: 34px; color: var(--apple-red); }
+        .graph-y-axis-label.weight { top: 69px; color: var(--toss-black); }
+        .graph-y-axis-label.ecw { top: 86px; color: #2563EB; }
+        .graph-y-axis-label.muscle { top: 104px; color: var(--apple-green); }
+        .graph-y-axis-label.pha { top: 122px; color: #0F766E; }
         .graph-meta-row {
             display: flex;
             gap: 8px;
@@ -264,6 +347,7 @@
         .graph-view-area { width: 480px; height: 180px; position: relative; transition: width 0.3s ease; }
         .graph-svg { width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
         .graph-data-labels { display: flex; gap: 8px; flex-wrap: wrap; font-size: 11px; margin-bottom: 12px; color: var(--toss-grey); }
+        .graph-data-labels.is-hidden { display: flex; }
         .metric-info-btn {
             border: 1px solid #DCE3EA;
             background: #ffffff;
@@ -271,7 +355,7 @@
             font-weight: 700;
             cursor: pointer;
             padding: 6px 10px;
-            border-radius: 999px;
+            border-radius: 10px;
             display: inline-flex;
             align-items: center;
             gap: 4px;
@@ -317,7 +401,7 @@
 
         .history-feed-item { padding: 18px 0; border-bottom: 1px solid var(--toss-light-grey); font-size: 13px; }
         .history-feed-item:last-child { border-bottom: none; }
-        .feed-date { font-weight: 500; color: var(--toss-grey); font-size: 12px; margin-bottom: 4px; }
+        .feed-date { font-weight: 900; color: var(--toss-grey); font-size: 12px; margin-bottom: 4px; }
         .feed-med { font-size: 15px; font-weight: 800; color: var(--toss-black); display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
         .metric-chip-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; margin-bottom: 8px; }
         .metric-chip { background: #F8FAFC; border: 1px solid #E5E8EB; border-radius: 10px; padding: 7px 6px; text-align: center; }
@@ -334,7 +418,7 @@
             border: none;
             background: #F1F5F9;
             color: var(--toss-grey);
-            border-radius: 999px;
+            border-radius: 10px;
             font-size: 11px;
             font-weight: 700;
             padding: 2px 8px;
@@ -370,7 +454,7 @@
         .export-grid-table td { padding: 12px 8px; border-bottom: 1px solid var(--toss-light-grey); color: #4E5968; line-height: 1.4; vertical-align: top; }
 
         .body-comp-table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 12px; }
-        .body-comp-table th { color: var(--toss-grey); font-weight: 500; padding: 6px 4px; text-align: left; }
+        .body-comp-table th { color: var(--toss-grey); font-weight: 900; padding: 6px 4px; text-align: left; }
         .body-comp-table td { padding: 8px 4px; font-weight: 700; color: var(--toss-black); border-bottom: 1px solid var(--toss-light-grey); }
         .journey-item-active-bg { display:inline-flex; align-items:center; justify-content:center; background-color: var(--toss-blue-light); border-radius: 10px; padding: 2px 8px; line-height:1.2; color: var(--toss-blue) !important; }
         .journey-item-active-bg.goal-negative { background:#FFF1F2; color:#DC2626 !important; }
@@ -403,7 +487,7 @@
         }
 
         .tag-pool { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 10px 0; }
-        .tag-item { display: inline-flex; align-items: center; justify-content: center; min-height: 30px; padding: 6px 12px; border-radius: 999px; font-size: 12px; cursor: pointer; color: #4E5968; font-weight: 600; background: #FFFFFF; border: 1px solid #D9E2EC; box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04); transition: all 0.18s ease; user-select: none; }
+        .tag-item { display: inline-flex; align-items: center; justify-content: center; min-height: 30px; padding: 0; border-radius: 0; font-size: 12px; cursor: pointer; color: #4E5968; font-weight: 600; background: #FFFFFF; border: 1px solid #D9E2EC; box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04); transition: all 0.18s ease; user-select: none; }
         .tag-item.selected { background: var(--toss-blue-light); color: var(--toss-blue); font-weight: 700; border-color: rgba(48, 73, 111, 0.18); box-shadow: inset 0 0 0 1px rgba(48, 73, 111, 0.08); }
         .tag-item:hover { transform: translateY(-1px); border-color: rgba(48, 73, 111, 0.18); }
 
@@ -436,8 +520,8 @@
         .ie-score-label {
             display:block;
             font-size: 21px;
-            font-weight: 900;
-            color: #1D4ED8;
+            font-weight: 800;
+            color: #10213D;
             letter-spacing: -0.35px;
             line-height: 1.15;
             margin-bottom: 3px;
@@ -470,7 +554,7 @@
         .ie-score-share-btn {
             border: 1px solid #D6E4FF;
             background: #F8FBFF;
-            color: #1D4ED8;
+            color: #10213D;
             border-radius: 999px;
             padding: 8px 11px;
             font-size: 11px;
@@ -479,7 +563,7 @@
             line-height: 1;
         }
         .ie-score-share-btn {
-            background: #EEF4FF;
+            background: transparent;
         }
         .leaderboard-list {
             display: grid;
@@ -512,7 +596,7 @@
             align-items: center;
             justify-content: center;
             background: #EFF6FF;
-            color: #1D4ED8;
+            color: #10213D;
             font-size: 11px;
             font-weight: 800;
         }
@@ -562,7 +646,7 @@
         }
         .ie-score-value {
             font-size: 30px;
-            font-weight: 900;
+            font-weight: 800;
             color: #0F172A;
             line-height: 1;
             letter-spacing: -0.8px;
@@ -607,9 +691,9 @@
         }
         .ie-score-rank-pill {
             border-radius: 999px;
-            padding: 4px 8px;
+            padding: 4px 10px;
             background: #EEF4FF;
-            color: #1D4ED8;
+            color: #10213D;
             font-weight: 800;
             white-space: nowrap;
         }
@@ -644,10 +728,10 @@
             color: #64748B;
         }
         .ie-brief-chip {
-            border-radius: 999px;
+            border-radius: 10px;
             padding: 4px 8px;
-            background: #EEF4FF;
-            color: #1D4ED8;
+            background: transparent;
+            color: #10213D;
             font-weight: 800;
             white-space: nowrap;
         }
@@ -678,7 +762,7 @@
             text-align: center;
         }
 
-        .modal-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 100; display: none; justify-content: center; backdrop-filter: blur(2px); }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 100; display: none; justify-content: center; backdrop-filter: blur(2px); }
         .modal-window { background: white; width: 100%; border-radius: 26px 26px 0 0; padding: 24px 20px; max-height: 85%; overflow-y: auto; align-self: flex-end; }
         .share-window { background: white; width: 100%; border-radius: 26px 26px 0 0; padding: 16px 20px 18px; }
 
@@ -686,7 +770,7 @@
         .share-platform-row::-webkit-scrollbar { display: none; }
         .share-channel-btn { display: flex; flex-direction: column; align-items: center; min-width: 68px; border: none; background: none; cursor: pointer; }
         .share-icon-circle { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 22px; margin-bottom: 8px; font-weight: bold; }
-        .share-channel-btn span { font-size: 11px; color: var(--toss-grey); font-weight: 500; text-align: center; }
+        .share-channel-btn span { font-size: 11px; color: var(--toss-grey); font-weight: 900; text-align: center; }
         .share-preview-box { margin-top: 10px; border: 1px solid #E5E8EB; border-radius: 14px; background: #F8FAFC; padding: 8px; }
         .share-preview-box .label { font-size: 11px; color: var(--toss-grey); font-weight: 700; margin-bottom: 6px; }
         .share-preview-img { width: 100%; height: 220px; object-fit: contain; border-radius: 10px; background: #ffffff; display: block; }
@@ -708,7 +792,7 @@
             border-style: dashed;
         }
 
-        .nav-bar { position: absolute; bottom: 0; width: 100%; height: 84px; background-color: #ffffff; border-top: 1px solid #E7EDF5; display: flex; justify-content: space-around; align-items: center; padding-bottom: 10px; z-index: 10; }
+        .nav-bar { position: absolute; bottom: 0; left: 0; width: 100%; height: 84px; background-color: #ffffff; border-top: 1px solid #E7EDF5; display: flex; justify-content: space-around; align-items: center; padding-bottom: 10px; z-index: 10; }
         .nav-item { font-size: 11px; color: #B5C0D2; text-align: center; flex: 1; cursor: default; font-weight: 700; letter-spacing: -0.2px; }
         .nav-item.active { color: var(--toss-black); font-weight: 800; }
         .voc-fab { position:absolute; right:14px; bottom:78px; z-index:45; border:none; background:#1D4ED8; color:#FFFFFF; border-radius:999px; padding:9px 12px; font-size:12px; font-weight:800; box-shadow:0 8px 20px rgba(29,78,216,0.28); cursor:pointer; }
@@ -734,7 +818,7 @@
         .feature-mask-text {
             background: rgba(15, 23, 42, 0.78);
             color: #ffffff;
-            border-radius: 999px;
+            border-radius: 10px;
             padding: 8px 12px;
             font-size: 12px;
             font-weight: 700;
@@ -759,7 +843,7 @@
         .coach-todo-step {
             width: 22px;
             height: 22px;
-            border-radius: 999px;
+            border-radius: 10px;
             background: #30496F;
             color: #fff;
             font-size: 11px;
@@ -783,7 +867,7 @@
         }
         .coach-todo-priority {
             margin-top: 10px;
-            background: #EEF4FF;
+            background: transparent;
             border: 1px solid #BFDBFE;
             border-radius: 12px;
             padding: 10px 12px;
@@ -797,10 +881,204 @@
         .side-guide-title { font-size: 12px; font-weight: 800; color: #1F2E4D; margin-bottom: 6px; }
         .side-guide-row { font-size: 11px; color: #475569; line-height: 1.6; margin-bottom: 4px; }
         .side-guide-row:last-child { margin-bottom: 0; }
-        .side-guide-chip { display: inline-flex; align-items: center; border-radius: 999px; padding: 2px 7px; margin-right: 6px; font-size: 10px; font-weight: 800; vertical-align: middle; }
+        .side-guide-chip { display: inline-flex; align-items: center; border-radius: 0; padding: 2px 7px; margin-right: 6px; font-size: 10px; font-weight: 800; vertical-align: middle; }
         .side-chip-do { background: #E8F7EF; color: #0F766E; }
         .side-chip-avoid { background: #FFF4E5; color: #B45309; }
         .side-chip-alert { background: #FEE2E2; color: #B91C1C; }
+        .onboarding-overlay {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1200;
+            display: none;
+            width: 390px;
+            height: 844px;
+            border-radius: 34px;
+            overflow: hidden;
+            background: #FFFFFF;
+            padding: 0;
+        }
+        .onboarding-bg {
+            display: none;
+        }
+        .onboarding-cloud {
+            display: none;
+        }
+        .onboarding-cloud.c1 { width: 220px; height: 70px; top: 8%; left: -28px; animation-delay: 0s; }
+        .onboarding-cloud.c2 { width: 170px; height: 54px; top: 18%; right: -18px; animation-delay: -2s; }
+        .onboarding-cloud.c3 { width: 260px; height: 76px; bottom: 12%; left: -35px; animation-delay: -1.5s; }
+        .onboarding-cloud.c4 { width: 190px; height: 58px; bottom: 18%; right: -24px; animation-delay: -3s; }
+        @keyframes cloudFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+        .onboarding-sheet {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(1000px 560px at 50% 100%, rgba(255,255,255,0.72), rgba(255,255,255,0) 62%),
+                linear-gradient(180deg, #EEF5FF 0%, #DFECFF 45%, #D3E5FF 100%);
+            border: none;
+            border-radius: 10px;
+            box-shadow: none;
+            overflow: hidden;
+            padding: 36px 16px 84px;
+            text-align: center;
+        }
+        
+.onboarding-skip-btn {
+             display: none;
+             display: flex;
+             width: fit-content;
+             margin: 8px 0 0 auto;
+             border: 1px solid #D9E4F5;
+             background: rgba(255,255,255,0.82);
+             color: #4B5E7F;
+             border-radius: 999px;
+             padding: 7px 11px;
+             font-size: 12px;
+             font-weight: 700;
+             cursor: pointer;
+             box-shadow: 0 4px 12px rgba(38,76,130,0.10);
+        }
+        .onboarding-skip-btn:hover { background: rgba(255,255,255,0.9); }
+
+        .onboarding-loading {
+             position: absolute;
+             inset: 0;
+             z-index: 20;
+             display: none;
+             flex-direction: column;
+             align-items: center;
+             justify-content: center;
+             padding: 24px;
+             text-align: center;
+             background: linear-gradient(180deg, rgba(238,245,255,0.96), rgba(211,229,255,0.98));
+        }
+        .onboarding-loading.active { display: flex; }
+        .onboarding-loading-spinner {
+             width: 42px;
+             height: 42px;
+             margin-bottom: 18px;
+             border: 4px solid rgba(47,107,255,0.16);
+             border-top-color: #2F6BFF;
+             border-radius: 50%;
+             animation: onboardingSpin .8s linear infinite;
+        }
+        .onboarding-loading-title { color: #1E3A8A; font-size: 18px; font-weight: 800; line-height: 1.5; }
+        .onboarding-loading-sub { margin-top: 7px; color: #56739C; font-size: 13px; }
+        @keyframes onboardingSpin { to { transform: rotate(360deg); } }        .onboarding-brand {
+            display: block;
+            color: #0F2A57;
+            font-size: 24px;
+            font-weight: 900;
+            margin-bottom: 10px;
+            letter-spacing: -0.3px;
+            line-height: 1.2;
+            text-shadow: 0 1px 0 rgba(255,255,255,0.45);
+        }
+        .onboarding-progress { display: none; }
+        .onboarding-progress span { flex: 1; height: 6px; background: #DEE7F5; border-radius: 999px; }
+        .onboarding-progress span.active { background: var(--toss-blue); }
+        .onboarding-step { display: none; }
+        .onboarding-step.active { display: block; }
+        .onboarding-title {
+            font-size: 17px;
+            color: #1E3A8A;
+            font-weight: 700;
+            line-height: 1.5;
+            margin-bottom: 10px;
+            letter-spacing: -0.1px;
+            text-shadow: 0 1px 0 rgba(255,255,255,0.35);
+        }
+        .onboarding-intro-cover-title {
+            font-size: 30px;
+            color: #0F2A57;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 10px;
+            letter-spacing: -0.3px;
+            text-shadow: 0 1px 0 rgba(255,255,255,0.45);
+        }
+        .onboarding-intro-cover-sub {
+            font-size: 14px;
+            color: #5A6E8F;
+            line-height: 1.65;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .onboarding-intro-desc {
+            font-size: 16px;
+            color: #314A73;
+            line-height: 1.65;
+            margin-bottom: 10px;
+            font-weight: 700;
+            letter-spacing: -0.1px;
+        }
+        .onboarding-intro-question {
+            font-size: 18px;
+            color: #1E3A8A;
+            line-height: 1.45;
+            margin-bottom: 12px;
+            font-weight: 800;
+            letter-spacing: -0.2px;
+        }
+
+        .onboarding-sub {
+            font-size: 14px;
+            color: #405A84;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        .onboarding-input, .onboarding-select {
+            width: 100%;
+            max-width: 420px;
+            margin: 0 auto;
+            border: 1px solid #C8D9F3;
+            border-radius: 16px;
+            padding: 14px 13px;
+            font-size: 14px;
+            color: var(--toss-black);
+            outline: none;
+            background: rgba(255,255,255,0.96);
+            display: block;
+            box-shadow: 0 6px 22px rgba(44, 83, 141, 0.08);
+        }
+        .onboarding-input:focus, .onboarding-select:focus {
+            border-color: #5A8FE8;
+            box-shadow: 0 0 0 3px rgba(73, 119, 195, 0.16);
+        }
+        .onboarding-dose-box {
+            background: rgba(255,255,255,0.95);
+            border: 1px solid #CCDCF3;
+            border-radius: 16px;
+            padding: 13px;
+            max-width: 420px;
+            margin: 0 auto;
+            box-shadow: 0 6px 22px rgba(44, 83, 141, 0.08);
+            text-align: left;
+        }
+        .onboarding-dose-val { font-size: 20px; font-weight: 800; color: var(--toss-blue); margin-bottom: 6px; }
+        .onboarding-dose-slider { width: 100%; accent-color: var(--toss-blue); cursor: pointer; }
+        .onboarding-dose-ticks { display: flex; justify-content: space-between; font-size: 10px; color: #64748B; margin-top: 8px; }
+        .onboarding-actions {
+            display: flex;
+            gap: 10px;
+            margin: 18px auto 0;
+            max-width: 420px;
+        }
+        .onboarding-btn { flex: 1; border-radius: 14px; font-size: 14px; font-weight: 800; padding: 12px; cursor: pointer; }
+        .onboarding-btn.ghost { border: 1px solid #C9D7EE; background: rgba(255,255,255,0.9); color: #526581; }
+        .onboarding-btn.primary { border: none; background: linear-gradient(135deg, #2F6BFF 0%, #1D4ED8 100%); color: #FFFFFF; box-shadow: 0 10px 24px rgba(29, 78, 216, 0.28); transition: transform .15s ease, box-shadow .15s ease, filter .15s ease; }
+        .onboarding-btn.primary:hover { transform: translateY(-1px); box-shadow: 0 14px 28px rgba(29, 78, 216, 0.32); filter: brightness(1.02); }
+        .onboarding-actions.intro-mode { justify-content: center; }
+        .onboarding-actions.intro-mode #onboardingNextBtn { flex: 0 1 280px; }
+        .onboarding-help { margin-top: 10px; font-size: 12px; color: #56739C; text-align: center; }
+        .onboarding-sheet.intro-mode-layout { padding-top: 220px; }
+        .onboarding-sheet.input-mode-layout { padding-top: 170px; }
     </style>
 </head>
 <body>
@@ -809,50 +1087,63 @@
     <div class="app-header">
         <span class="icon-btn" style="color:var(--toss-grey);">뒤로</span>
         <h1><span class="app-title-main">인케어</span><span class="app-title-sub">다이어트 주사·투약 기록</span></h1>
-        <span class="icon-btn" style="visibility:hidden;">공유하기</span>
+        <button class="header-point-mini" id="topRewardPointBadge" type="button" onclick="openRewardInfo()"><span class="point-label">인케어 포인트</span><span class="point-value">0p</span></button>
+
     </div>
     <div class="module-tabs">
-        <button class="module-tab-btn" id="navDiary" onclick="switchTab('diary')">투약 기록</button>
-        <button class="module-tab-btn active" id="navAnalysis" onclick="switchTab('analysis')">인바디 분석</button>
+        <button class="module-tab-btn active" id="navDiary" onclick="switchTab('diary')">투약 기록</button>
+
+        <button class="module-tab-btn" id="navAnalysis" onclick="switchTab('analysis')">인바디 분석</button>
+
     </div>
     <div class="app-content">
-        <div id="diaryTab" class="tab-panel">
-            <button class="add-record-btn" onclick="openModal()">새 투약 기록 등록하기</button>
-            <div class="reward-clickable-banner" onclick="openRewardInfo()">
-                <div class="reward-banner-head">
-                    <div>
-                        <div class="reward-banner-title">인케어 리워드 현황</div>
-                        <div class="reward-banner-status" id="rewardBannerStatus">지금까지 모은 인케어 리워드예요.<br>눌러서 이번 달 인케어 리워드를 확인하세요.</div>
-                    </div>
-                    <div class="view-badge" id="rewardPointBadge">380p</div>
-                </div>
-            </div>
+        <div id="diaryTab" class="tab-panel active">
+            <button class="add-record-btn" onclick="openModal()">오늘 투약 기록하기</button>
+
 
             <div class="card" style="background:#F8FBFF; border:1px solid #E3EDF9;">
                 <div class="card-title" style="margin-bottom:10px;">
                     <span class="section-title" style="white-space:nowrap;">투약 기록과 함께 보는 인바디 변화</span>
                     
+                </div>                                <div class="graph-period-summary" aria-label="인바디 변화 측정 기간">
+                    <div class="graph-period-days"><span aria-hidden="true">📅</span><span id="graphPeriodDays">738일</span></div>
+                    <div class="graph-period-range"><span id="graphPeriodRange">2024.07.10~2026.07.17</span><button type="button" class="graph-period-edit" onclick="openGraphPeriodModal()" aria-label="측정 기간 수정">✏️</button></div>
+                </div><div class="graph-summary-row" aria-label="주요 변화 요약">
+                    <div class="graph-summary-card">
+                        <span class="graph-summary-label">체중</span>
+                        <strong class="graph-summary-value">-2.4kg</strong>
+                    </div>
+                    <div class="graph-summary-card">
+                        <span class="graph-summary-label">체지방</span>
+                        <strong class="graph-summary-value good">-4.3kg</strong>
+                    </div>
+                    <div class="graph-summary-card">
+                        <span class="graph-summary-label">근육</span>
+                        <strong class="graph-summary-value good">+1.3kg</strong>
+                    </div>
                 </div>
+                <div class="graph-summary-message">지방 위주로 비교적 안정적으로 감소하고 있어요.</div>
                 <div class="graph-meta-row">
-                <div class="graph-data-labels">
-                    <button class="metric-info-btn" data-metric-btn="fat" style="color:var(--apple-red)" onclick="openMetricInfo('fat')">● 체지방률 <span style="font-size:10px;">ⓘ</span></button>
-                    <button class="metric-info-btn" data-metric-btn="muscle" style="color:var(--apple-green)" onclick="openMetricInfo('muscle')">● 골격근량 <span style="font-size:10px;">ⓘ</span></button>
-                    <button class="metric-info-btn" data-metric-btn="pha" style="color:#0F766E" onclick="openMetricInfo('pha')">● 위상각(PhA) <span style="font-size:10px;">ⓘ</span></button>
-                    <button class="metric-info-btn" data-metric-btn="ecw" style="color:#2563EB" onclick="openMetricInfo('ecw')">● 세포외수분비(ECW Ratio) <span style="font-size:10px;">ⓘ</span></button>
-                    <button class="metric-info-btn" data-metric-btn="weight" style="color:var(--toss-black)" onclick="openMetricInfo('weight')">● 체중 <span style="font-size:10px;">ⓘ</span></button>
-                    <button class="metric-info-btn" data-metric-btn="visceral" style="color:#7C3AED; display:none;" onclick="openMetricInfo('visceral')">● 내장지방 단면적 <span style="font-size:10px;">ⓘ</span></button>
-                    <button class="metric-info-btn" data-metric-btn="abdominal" style="color:#EA580C; display:none;" onclick="openMetricInfo('abdominal')">● 복부지방률 <span style="font-size:10px;">ⓘ</span></button>
-                    <span class="metric-hint">버튼을 누르면 지표 설명 팝업이 열려요</span>
-                </div>
                 <div class="zoom-btn-group">
+
                     <button class="zoom-btn" onclick="openMetricSetupModal()" title="지표 편집">⚙</button>
+
                     <button class="zoom-btn" onclick="zoomGraph(1.4)" title="확대">+</button>
+
                     <button class="zoom-btn" onclick="zoomGraph(0.6)" title="축소">-</button>
+
                 </div>
                 </div>
                 <div class="graph-shell">
                 <div class="graph-scroll-container" id="graphScrollArea">
                     <div class="graph-view-area" id="graphContainer">
+                        <div class="graph-y-axis-labels" aria-label="그래프 지표 이름">
+                            <button type="button" class="graph-y-axis-label fat" onclick="openMetricInfo('fat')" title="체지방률 설명 보기">체지방률</button>
+                            <button type="button" class="graph-y-axis-label weight" onclick="openMetricInfo('weight')" title="체중 설명 보기">체중</button>
+                            <button type="button" class="graph-y-axis-label ecw" onclick="openMetricInfo('ecw')" title="세포외수분비 설명 보기">세포외수분비</button>
+                            <button type="button" class="graph-y-axis-label muscle" onclick="openMetricInfo('muscle')" title="골격근량 설명 보기">골격근량</button>
+                            <button type="button" class="graph-y-axis-label pha" onclick="openMetricInfo('pha')" title="위상각 설명 보기">위상각</button>
+                        </div>
                         <svg class="graph-svg" viewBox="0 0 480 180" preserveAspectRatio="none">
                             <path data-metric-line="fat" d="M 20 40 L 70 45 L 120 52 L 170 58 L 220 64 L 270 70 L 320 82 L 370 95 L 420 102 L 460 110" fill="none" stroke="var(--apple-red)" stroke-width="3" stroke-linecap="round"/>
                             <path data-metric-line="muscle" d="M 20 110 L 70 108 L 120 107 L 170 105 L 220 104 L 270 105 L 320 103 L 370 100 L 420 98 L 460 96" fill="none" stroke="var(--apple-green)" stroke-width="3" stroke-linecap="round"/>
@@ -870,20 +1161,17 @@
                         <div class="node-dot" style="left:45.83%; top:64px;" onmouseover="showTooltip(event, 'node3')" onmouseout="hideTooltip('node3')"></div>
                         <div class="node-dot" style="left:66.67%; top:82px;" onmouseover="showTooltip(event, 'node2')" onmouseout="hideTooltip('node2')"></div>
                         <div class="node-dot" style="left:87.5%; top:102px;" onmouseover="showTooltip(event, 'node4')" onmouseout="hideTooltip('node4')"></div>
-                        <div id="tooltip_node1" class="tooltip-box">📅 5월 14일<br>• 체중: 70.2kg<br>• 골격근: 23.8kg<br>• 체지방률: 30.1%</div>
-                        <div id="tooltip_node2" class="tooltip-box">📅 6월 04일<br>• 체중: 67.4kg<br>• 골격근: 24.1kg<br>• 체지방률: 27.8%</div>
-                        <div id="tooltip_node3" class="tooltip-box">📅 5월 28일<br>• 체중: 68.2kg<br>• 골격근: 24.0kg<br>• 체지방률: 28.9%</div>
-                        <div id="tooltip_node4" class="tooltip-box">📅 6월 11일<br>• 체중: 66.9kg<br>• 골격근: 24.2kg<br>• 체지방률: 27.0%</div>
+                        <div id="tooltip_node1" class="tooltip-box">📅 2024년 07월 10일<br>• 체중: 70.2kg<br>• 골격근: 23.8kg<br>• 체지방률: 30.1%</div>
+                        <div id="tooltip_node2" class="tooltip-box">📅 2026년 01월 17일<br>• 체중: 67.4kg<br>• 골격근: 24.1kg<br>• 체지방률: 27.8%</div>
+                        <div id="tooltip_node3" class="tooltip-box">📅 2025년 07월 17일<br>• 체중: 68.2kg<br>• 골격근: 24.0kg<br>• 체지방률: 28.9%</div>
+                        <div id="tooltip_node4" class="tooltip-box">📅 2026년 07월 17일<br>• 체중: 66.9kg<br>• 골격근: 24.2kg<br>• 체지방률: 27.0%</div>
                         <div class="dose-marker" style="position: absolute; background-color: var(--toss-black); color: white; font-size: 9px; font-weight: 600; padding: 2px 5px; border-radius: 5px; top:12px; left:25%; transform: translateX(-50%);">위고비 0.25</div>
                         <div class="dose-marker" style="position: absolute; background-color: #475569; color: white; font-size: 9px; font-weight: 600; padding: 2px 5px; border-radius: 5px; top:12px; left:45.83%; transform: translateX(-50%);">위고비 0.25</div>
                         <div class="dose-marker" style="position: absolute; background-color: var(--toss-blue); color: white; font-size: 9px; font-weight: 600; padding: 2px 5px; border-radius: 5px; top:12px; left:66.67%; transform: translateX(-50%);">위고비 0.5</div>
-                        <div class="dose-marker" style="position: absolute; background-color: #1D4ED8; color: white; font-size: 9px; font-weight: 600; padding: 2px 5px; border-radius: 5px; top:12px; left:87.5%; transform: translateX(-50%);">위고비 0.75</div>
-                        <div class="graph-axis-x" id="graphLabels"><span>5/14</span><span>5/21</span><span>5/28</span><span>6/04</span><span>6/11</span><span>6/18</span></div>
+                        <div class="dose-marker" style="position: absolute; background-color: #10213D; color: white; font-size: 9px; font-weight: 600; padding: 2px 5px; border-radius: 5px; top:12px; left:87.5%; transform: translateX(-50%);">위고비 0.75</div>
+                        <div class="graph-axis-x" id="graphLabels"><span>2024.07</span><span>2025.01</span><span>2025.07</span><span>2026.01</span><span>2026.07</span></div>
                     </div>
                 </div>
-                </div>
-                <div style="font-size:12px; color:#0F766E; font-weight:700; background:#ECFDF5; border:1px solid #A7F3D0; border-radius:10px; padding:8px 10px; margin-top:10px;">
-                    지방 위주로 비교적 안정적으로 감소하고 있어요.
                 </div>
 </div>
 
@@ -892,7 +1180,10 @@
                     <span class="section-title" style="display:block; white-space:nowrap; margin-bottom:10px;">비만 치료제 투약 기록</span>
                     <div>
                         <button class="toggle-btn-pill active" id="btnFeedView" onclick="toggleViewMode('feed')">피드형</button>
+
                         <button class="toggle-btn-pill" id="btnTableView" onclick="toggleViewMode('table')">표로 보기</button>
+<button class="toggle-btn-pill" id="btnCalendarView" onclick="toggleViewMode('calendar')">달력형</button>
+
                     </div>
                 </div>
 
@@ -905,7 +1196,7 @@
                             <div class="metric-chip" data-metric="muscle"><span class="label">골격근량</span><span class="value">24.1kg</span></div>
                             <div class="metric-chip" data-metric="fatmass"><span class="label">체지방량</span><span class="value">18.8kg</span></div>
                         </div>
-                        <div class="pha-inline-row">위상각(PhA): <b style="color:#0F766E;">5.5°</b></div>
+                        <div class="pha-inline-row">위상각: <b style="color:#0F766E;">5.5°</b></div>
                         <div class="feed-memo">
                             <div class="memo-row"><span class="memo-label">부작용</span><span>🤢 메스꺼움 (약간 유)</span></div>
                             <div class="memo-row"><span class="memo-label">식단</span><span>점심 아보카도 고단백 샐러드, 계란 1개</span></div>
@@ -920,7 +1211,8 @@
                             <div class="metric-chip" data-metric="muscle"><span class="label">골격근량</span><span class="value">24.0kg</span></div>
                             <div class="metric-chip" data-metric="fatmass"><span class="label">체지방량</span><span class="value">19.6kg</span></div>
                         </div>
-                        <div class="pha-inline-row">위상각(PhA): <button class="pha-value-btn" onclick="openPhaUnavailableInfo()">—</button></div>
+                        <div class="pha-inline-row">위상각: <button class="pha-value-btn" onclick="openPhaUnavailableInfo()">—</button>
+</div>
                         <div class="feed-memo">
                             <div class="memo-row"><span class="memo-label">부작용</span><span>증상 없음</span></div>
                             <div class="memo-row"><span class="memo-label">식단</span><span>점심 일반 한식 반식, 수분 2.0L 공급 완료</span></div>
@@ -935,7 +1227,7 @@
                             <div class="metric-chip" data-metric="muscle"><span class="label">골격근량</span><span class="value">23.9kg</span></div>
                             <div class="metric-chip" data-metric="fatmass"><span class="label">체지방량</span><span class="value">20.8kg</span></div>
                         </div>
-                        <div class="pha-inline-row">위상각(PhA): <b style="color:#0F766E;">5.3°</b></div>
+                        <div class="pha-inline-row">위상각: <b style="color:#0F766E;">5.3°</b></div>
                         <div class="feed-memo">
                             <div class="memo-row"><span class="memo-label">부작용</span><span>💩 변비 증상 발생</span></div>
                             <div class="memo-row"><span class="memo-label">식단</span><span>저녁 그릭요거트와 푸룬주스 보충</span></div>
@@ -950,7 +1242,7 @@
                             <div class="metric-chip" data-metric="muscle"><span class="label">골격근량</span><span class="value">23.8kg</span></div>
                             <div class="metric-chip" data-metric="fatmass"><span class="label">체지방량</span><span class="value">21.1kg</span></div>
                         </div>
-                        <div class="pha-inline-row">위상각(PhA): <b style="color:#0F766E;">5.2°</b></div>
+                        <div class="pha-inline-row">위상각: <b style="color:#0F766E;">5.2°</b></div>
                         <div class="feed-memo">
                             <div class="memo-row"><span class="memo-label">부작용</span><span>🤕 두통 가볍게</span></div>
                             <div class="memo-row"><span class="memo-label">식단</span><span>아침 단백질 음료, 점심 일반식</span></div>
@@ -965,7 +1257,7 @@
                             <div class="metric-chip" data-metric="muscle"><span class="label">골격근량</span><span class="value">23.9kg</span></div>
                             <div class="metric-chip" data-metric="fatmass"><span class="label">체지방량</span><span class="value">22.0kg</span></div>
                         </div>
-                        <div class="pha-inline-row">위상각(PhA): <b style="color:#0F766E;">5.1°</b></div>
+                        <div class="pha-inline-row">위상각: <b style="color:#0F766E;">5.1°</b></div>
                         <div class="feed-memo">
                             <div class="memo-row"><span class="memo-label">부작용</span><span>증상 없음</span></div>
                             <div class="memo-row"><span class="memo-label">식단</span><span>첫 투약일 야식 생각 완전히 차단됨</span></div>
@@ -975,17 +1267,31 @@
                 </div>
                 <div class="feed-more-wrap">
                     <button class="feed-more-btn" id="feedMoreBtn" onclick="toggleFeedMore()">더보기</button>
+
                 </div>
 
+                <div class="view-panel" id="calendarViewArea">
+                    <div class="calendar-view">
+                        <div class="calendar-header">
+                            <button type="button" class="calendar-nav-btn" onclick="changeInjectionCalendarMonth(-1)" aria-label="이전 달">‹</button>
+                            <span class="calendar-month" id="calendarMonthLabel">2026년 6월</span>
+                            <button type="button" class="calendar-nav-btn" onclick="changeInjectionCalendarMonth(1)" aria-label="다음 달">›</button>
+                        </div>
+                        <div class="calendar-weekdays"><span>일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span></div>
+                        <div class="calendar-grid" id="injectionCalendarGrid"></div>
+                        <div class="calendar-detail" id="injectionCalendarDetail">날짜를 누르면 해당 투약 기록을 확인할 수 있어요.</div>
+                    </div>
+                </div>
                 <div class="view-panel" id="tableViewArea">
                     <div class="table-slide-wrap">
                         <table class="export-grid-table" id="dataLogTable">
                             <thead>
-                                <tr><th>날짜</th><th>용량(부위)</th><th>체중</th><th>골격근량</th><th>체지방량</th><th>위상각(PhA)</th><th>부작용</th><th>식단 / 운동 요약</th></tr>
+                                <tr><th>날짜</th><th>용량(부위)</th><th>체중</th><th>골격근량</th><th>체지방량</th><th>위상각</th><th>부작용</th><th>식단 / 운동 요약</th></tr>
                             </thead>
                             <tbody>
                                 <tr><td>06/04</td><td>0.5m(허벅지)</td><td>67.4kg</td><td>24.1kg</td><td>18.8kg</td><td>5.5°</td><td>메스꺼움</td><td>아보카도 샐러드 / 싸이클 40분</td></tr>
-                                <tr><td>05/28</td><td>0.25m(복부)</td><td>68.2kg</td><td>24.0kg</td><td>19.6kg</td><td><button class="pha-value-btn" onclick="openPhaUnavailableInfo()">—</button></td><td>없음</td><td>한식 반식 / 스쿼트 3세트</td></tr>
+                                <tr><td>05/28</td><td>0.25m(복부)</td><td>68.2kg</td><td>24.0kg</td><td>19.6kg</td><td><button class="pha-value-btn" onclick="openPhaUnavailableInfo()">—</button>
+</td><td>없음</td><td>한식 반식 / 스쿼트 3세트</td></tr>
                                 <tr><td>05/21</td><td>0.25m(복부)</td><td>69.0kg</td><td>23.9kg</td><td>20.8kg</td><td>5.3°</td><td>변비</td><td>그릭요거트 / 산책 50분</td></tr>
                                 <tr><td>05/14</td><td>0.25m(복부)</td><td>70.2kg</td><td>23.8kg</td><td>21.1kg</td><td>5.2°</td><td>두통</td><td>단백질 음료 / 계단 오르기</td></tr>
                                 <tr><td>05/07</td><td>0.25m(허벅지)</td><td>71.1kg</td><td>23.9kg</td><td>22.0kg</td><td>5.1°</td><td>없음</td><td>첫 투약 야식 차단 / 러닝 20분</td></tr>
@@ -995,13 +1301,14 @@
                     </div>
                     <div class="table-more-wrap">
                         <button class="table-more-btn" id="tableMoreBtn" onclick="toggleTableMore()">이전 기록 더보기</button>
+
                     </div>
                 </div>
             </div>
 
         </div>
 
-        <div id="analysisTab" class="tab-panel active">
+        <div id="analysisTab" class="tab-panel">
             <div class="ie-score-card">
                 <div class="ie-score-top">
                     <span class="ie-score-label">인바디 효율 점수</span>
@@ -1028,8 +1335,11 @@
                 </div>
                 <div class="ie-score-top-actions">
                     <button class="ie-score-rank-btn" onclick="openIeScoreRankInfo()">전체 순위보기</button>
+
                     <button class="ie-score-info-btn" onclick="openIeScoreInfo()">인바디 효율 점수란?</button>
+
                     <button class="ie-score-share-btn" onclick="openIeScoreShareModal()">공유하기</button>
+
                 </div>
             </div>
             <div class="analysis-details" id="analysisDetails">
@@ -1037,6 +1347,7 @@
                     <div class="card-title">
                         <span class="section-title">체성분 밸런스</span>
                         <button onclick="openSpecModal()" style="background:none; border:none; color:var(--toss-blue); font-size:12px; font-weight:600; cursor:pointer;">목표 수정 ⚙️</button>
+
                     </div>
                     <div style="font-size: 11px; color: var(--toss-grey); margin-bottom: 8px;">현재 체성분 흐름을 보여줘요.</div>
                     
@@ -1075,6 +1386,7 @@
                         <div id="todaySideEffectPreview" class="side-effect-chip-wrap"></div>
                     </div>
                     <button class="add-record-btn" style="padding:12px; font-size:14px; margin-bottom:10px;" onclick="updateProteinCoach()">실행 가이드 보기</button>
+
                     <div class="ad-slot">
                         <div style="font-size:11px; font-weight:700; color:var(--toss-grey);">외부 업체 연동 영역 (준비중)</div>
                         <div style="font-size:11px; color:var(--toss-sub-grey); margin-top:6px;">단백질/운동 추천 제휴 배너는 이 영역에 연결될 예정입니다.</div>
@@ -1128,6 +1440,7 @@
 </div>
     
     <button id="vocFabBtn" class="voc-fab" onclick="openVocContactModal()">💬 의견/문의</button>
+
     <div class="nav-bar">
         <div class="nav-item">
             <span class="nav-icon">
@@ -1167,21 +1480,26 @@
             <span class="voc-btn-note">500p는 월 1회만 지급돼요</span>
             <span class="voc-btn-arrow" aria-hidden="true">→</span>
         </button>
+
         <button class="voc-action-btn secondary" style="margin-top:0; margin-bottom:0;" onclick="openVocInquiryForm()">
             <span>문의하기</span>
             <span class="voc-btn-note">오류·궁금한 점을 남기면 답변드려요</span>
             <span class="voc-btn-arrow" aria-hidden="true">→</span>
         </button>
+
         </div>
         <button class="add-record-btn" style="background: var(--toss-light-grey); color: var(--toss-black); margin-top: 0; margin-bottom: 0;" onclick="closeVocContactModal()">닫기</button>
+
     </div>
 </div>
 <div class="modal-overlay" id="recordModal">
     <div class="modal-window">
-        <div style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: var(--toss-black);">새 투약 기록 등록하기</div>
-        <button type="button" onclick="openRecordPointGuide()" style="width:100%; border:1px solid #D9E8FF; background:#EEF4FF; color:#1D4ED8; border-radius:12px; padding:10px 12px; margin-bottom:12px; font-size:12px; font-weight:800; text-align:left; cursor:pointer;">
+        <div style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: var(--toss-black);">오늘 투약 기록하기</div>
+        <button type="button" onclick="openRecordPointGuide()" style="width:100%; border:1px solid #D9E8FF; background:#EEF4FF; color:#1D4ED8; border-radius:12px; padding:10px 12px; margin-bottom:10px; font-size:12px; font-weight:800; text-align:left; cursor:pointer;">
             🎁 투약 기록하고 최대 350p 받기
         </button>
+        <div style="font-size:12px; color:#4B5563; margin:0 0 10px 2px;">필수 항목 3개만 입력해도 기록이 저장돼요.</div>
+
 
         <div class="form-group">
             <label>비만약 종류<span class="required-mark" style="color:var(--apple-red); margin-left:2px;">*</span></label>
@@ -1194,19 +1512,17 @@
         
         <div class="form-group">
             <label>투약 용량<span class="required-mark" style="color:var(--apple-red); margin-left:2px;">*</span></label>
-            <div class="dose-linear-wrap">
-                <div class="dose-linear-top">
-                    <span>0.25 mg</span>
-                    <span class="dose-linear-current" id="doseCurrentLabel">0.25 mg</span>
-                    <span>10 mg</span>
-                </div>
-                <input type="range" class="dose-linear-input" id="inputDose" min="0.25" max="10" step="0.05" value="0.25" oninput="handleDoseSliderInput()" onchange="handleDoseSliderInput()">
-                <div class="dose-linear-ticks">
-                    <span class="start" style="left:0%;">0.25</span><span style="left:23.08%;">2.5</span><span style="left:48.72%;">5</span><span style="left:74.36%;">7.5</span><span class="end" style="left:100%;">10</span>
-                </div>
-            </div>
+            <select class="form-control" id="inputDose" onchange="handleDoseSliderInput()">
+                <option value="">선택해주세요</option>
+                <option value="0.25">0.25 mg</option>
+                <option value="0.5">0.5 mg</option>
+                <option value="0.75">0.75 mg</option>
+                <option value="2.5">2.5 mg</option>
+                <option value="7.5">7.5 mg</option>
+                <option value="10">10 mg</option>
+            </select>
         </div>
-        
+
         <div class="form-group">
             <label>주사 부위<span class="required-mark" style="color:var(--apple-red); margin-left:2px;">*</span></label>
             <select class="form-control" id="inputSite" onchange="selectInjectionSite(this.value)">
@@ -1226,7 +1542,9 @@
             </select>
         </div>
 
-        <div style="background: var(--toss-light-grey); padding: 16px; border-radius: 18px; margin-top: 10px;">
+        <button type="button" id="optionalDiaryToggleBtn" onclick="toggleOptionalDiarySection()" style="width:100%; border:1px solid #DCE6F5; background:#FFFFFF; color:#334155; border-radius:12px; padding:10px 12px; margin-top:10px; font-size:12px; font-weight:800; text-align:left; cursor:pointer;">선택 입력 더하기 (+최대 150p) ▾</button>
+
+        <div id="optionalDiarySection" style="display:none; background: var(--toss-light-grey); padding: 16px; border-radius: 18px; margin-top: 10px;">
             <label style="color:var(--toss-black); font-size:14px; font-weight:700; display:block; margin-bottom:8px;">비만약 일기 📝</label>
             <div style="font-size:12px; color:#64748B; font-weight:700; margin:0 0 4px 2px;">• 부작용</div>
             <div style="font-size:11px; color:#D97706; font-weight:700; margin:0 0 8px 2px;">부작용 여부를 선택하면 +50p</div>
@@ -1254,7 +1572,9 @@
 
         <div style="display: flex; gap: 12px; margin-top: 18px;">
             <button class="add-record-btn" style="background-color:var(--toss-light-grey); color:var(--toss-black);" onclick="closeModal()">취소</button>
-            <button class="add-record-btn" onclick="saveRecord()">저장하기</button>
+
+            <button class="add-record-btn" onclick="saveRecord()">오늘 기록 완료</button>
+
         </div>
     </div>
 </div>
@@ -1278,18 +1598,31 @@
             <span style="font-size:11px; color:#7B8BA5;">참고: 같은 주차 중복 기록은 1회만 인정, 월 최대 적립 상한 2,000p</span>
         </div>
         <button class="add-record-btn" style="margin-top:14px; margin-bottom:0;" onclick="closeRecordPointGuide()">확인</button>
+
     </div>
 </div>
-<div class="modal-overlay" id="specModal">
+<div class="modal-overlay" id="graphPeriodModal" style="align-items: center; padding: 0 20px; display:none;">
+    <div class="modal-window" style="border-radius:22px; align-self:center;">
+        <div style="font-size:17px; font-weight:800; color:var(--toss-black); margin-bottom:6px;">측정 기간 설정</div>
+        <div style="font-size:12px; color:#64748B; line-height:1.55; margin-bottom:12px;">시작날짜와 종료날짜를 선택해 주세요.</div>
+        <div class="period-setting-row"><span class="period-setting-label" id="periodStartLabel">시작 (최초)</span><div class="period-setting-control"><span style="font-size:11px; color:#64748B;">자동</span><label class="period-switch"><input type="checkbox" id="periodStartAuto" checked onchange="toggleGraphPeriodInputs()"><span class="period-switch-track"></span></label></div></div>
+        <input class="period-date-input" id="periodStartDate" type="date" value="2024-07-10" disabled onchange="toggleGraphPeriodInputs()">
+        <div class="period-setting-row" style="margin-top:16px;"><span class="period-setting-label" id="periodEndLabel">종료 (최근)</span><div class="period-setting-control"><span style="font-size:11px; color:#64748B;">자동</span><label class="period-switch"><input type="checkbox" id="periodEndAuto" checked onchange="toggleGraphPeriodInputs()"><span class="period-switch-track"></span></label></div></div>
+        <input class="period-date-input" id="periodEndDate" type="date" value="2026-07-17" disabled onchange="toggleGraphPeriodInputs()">
+        <div style="display:flex; gap:10px; margin-top:16px;"><button class="add-record-btn" style="background:var(--toss-light-grey); color:var(--toss-black); margin:0;" onclick="closeGraphPeriodModal()">취소</button><button class="add-record-btn" style="margin:0;" onclick="saveGraphPeriod()">적용</button></div>
+    </div>
+</div><div class="modal-overlay" id="specModal">
     <div class="modal-window">
-        <div style="font-size: 18px; font-weight: 700; margin-bottom: 18px; color: var(--toss-black);">🎯 신체 스펙 및 목표 체성분 수정</div>
+        <div style="font-size: 18px; font-weight: 700; margin-bottom: calc(20px + env(safe-area-inset-bottom)); color: var(--toss-black);">🎯 신체 스펙 및 목표 체성분 수정</div>
         <div class="form-group"><label>신장 (cm)</label><input type="number" class="form-control" id="editHeight" value="164"></div>
         <div class="form-group"><label>목표 체중 (kg)</label><input type="number" class="form-control" id="editWeight" value="55.0"></div>
         <div class="form-group"><label>목표 골격근량 (kg)</label><input type="number" class="form-control" id="editMuscle" value="25.5"></div>
         <div class="form-group"><label>목표 체지방률 (%)</label><input type="number" class="form-control" id="editFat" value="22.0"></div>
         <div style="display: flex; gap: 12px; margin-top: 18px;">
             <button class="add-record-btn" style="background-color:var(--toss-light-grey); color:var(--toss-black);" onclick="closeSpecModal()">취소</button>
+
             <button class="add-record-btn" onclick="saveSpecData()">수정 완료</button>
+
         </div>
     </div>
 </div>
@@ -1299,6 +1632,7 @@
         <div id="metricInfoTitle" style="font-size: 17px; font-weight: 800; color: var(--toss-black); margin-bottom: 10px;"></div>
         <div id="metricInfoBody" style="font-size: 12px; color: var(--toss-grey); line-height: 1.7; background:#F8FAFC; padding:12px; border-radius:12px;"></div>
         <button class="add-record-btn" style="margin-top:14px; margin-bottom:0;" onclick="closeMetricInfo()">확인</button>
+
     </div>
 </div>
 
@@ -1314,6 +1648,7 @@
             <b>*참고용 안내</b> 실제 사용자 데이터가 연결되면 이 화면의 비교값과 순위는 달라질 수 있습니다.
         </div>
         <button class="add-record-btn" style="margin-top:14px; margin-bottom:0;" onclick="closeIeScoreInfo()">확인</button>
+
     </div>
 </div>
 
@@ -1323,6 +1658,7 @@
         <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:10px;">
             <div style="font-size: 17px; font-weight: 800; color: var(--toss-black);">인바디 효율 점수 순위표</div>
             <button class="ie-score-info-btn" onclick="closeIeScoreRankInfo()">닫기</button>
+
         </div>
         <div style="display:grid; gap:8px; max-height: 54vh; overflow:auto;">
             <div class="premium-metric-card" style="background:#F8FBFF; border-color:#D9E7FF;">
@@ -1370,7 +1706,9 @@
             <span class="voc-btn-note">500p는 월 1회만 지급돼요</span>
             <span class="voc-btn-arrow" aria-hidden="true">→</span>
         </button>
+
         <button id="rewardExchangeBtn" class="add-record-btn" style="margin-top: 0; margin-bottom: 10px;" onclick="openRewardExchangeForm()">리워드 1,000p 달성 시 신청 가능</button>
+
 
         <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:12px; border-radius:14px; margin-bottom:10px; color:var(--toss-grey); line-height:1.65; font-size:12px; font-weight:500;">
             <div style="font-size:13px; font-weight:800; color:var(--toss-black); margin-bottom:8px;">💡 리워드 적립 정책</div>
@@ -1414,6 +1752,7 @@
         </div>
 
         <button class="add-record-btn" style="background: var(--toss-light-grey); color: var(--toss-black); margin-top: 0; margin-bottom: 0;" onclick="closeRewardInfo()">닫기</button>
+
     </div>
 </div>
 <div class="modal-overlay" id="metricSetupModal" style="align-items: center; padding: 0 20px; display:none;">
@@ -1422,14 +1761,16 @@
         <div style="font-size:12px; color:var(--toss-grey); line-height:1.6; margin-bottom:10px;">처음 셋업 또는 편집에서 그래프에 넣을 지표를 선택하세요.</div>
         <label style="display:flex; gap:8px; margin-bottom:8px;"><input type="checkbox" class="metric-toggle" value="fat" checked> 체지방률</label>
         <label style="display:flex; gap:8px; margin-bottom:8px;"><input type="checkbox" class="metric-toggle" value="muscle" checked> 골격근량</label>
-        <label style="display:flex; gap:8px; margin-bottom:8px;"><input type="checkbox" class="metric-toggle" value="pha" checked> 위상각(PhA)</label>
-        <label style="display:flex; gap:8px; margin-bottom:8px;"><input type="checkbox" class="metric-toggle" value="ecw" checked> 세포외수분비(ECW Ratio)</label>
+        <label style="display:flex; gap:8px; margin-bottom:8px;"><input type="checkbox" class="metric-toggle" value="pha" checked> 위상각</label>
+        <label style="display:flex; gap:8px; margin-bottom:8px;"><input type="checkbox" class="metric-toggle" value="ecw" checked> 세포외수분비</label>
         <label style="display:flex; gap:8px; margin-bottom:8px;"><input type="checkbox" class="metric-toggle" value="weight" checked> 체중</label>
         <label style="display:flex; gap:8px; margin-bottom:8px;"><input type="checkbox" class="metric-toggle" value="visceral"> 내장지방 단면적</label>
         <label style="display:flex; gap:8px; margin-bottom:8px;"><input type="checkbox" class="metric-toggle" value="abdominal"> 복부지방률</label>
         <div style="display:flex; gap:10px; margin-top:12px;">
             <button class="add-record-btn" style="background-color:var(--toss-light-grey); color:var(--toss-black); margin-bottom:0;" onclick="closeMetricSetupModal()">취소</button>
+
             <button class="add-record-btn" style="margin-bottom:0;" onclick="applyMetricSetup()">적용</button>
+
         </div>
     </div>
 </div>
@@ -1442,18 +1783,20 @@
             체중만이 아니라 골격근량/체지방률/위상각까지 확인하면 감량의 질을 더 정확히 볼 수 있어요.
         </div>
         <button class="add-record-btn" style="margin-top:12px; margin-bottom:0;" onclick="closeWeeklyReminder()">확인</button>
+
     </div>
 </div>
 
 <div class="modal-overlay" id="phaUnavailableModal" style="align-items: center; padding: 0 20px; display:none;">
     <div class="modal-window" style="border-radius: 22px; align-self: center; box-shadow: 0 12px 40px rgba(0,0,0,0.15);">
-        <div style="font-size: 17px; font-weight: 800; color: var(--toss-black); margin-bottom: 8px;">위상각(PhA) 값이 공란인 이유</div>
+        <div style="font-size: 17px; font-weight: 800; color: var(--toss-black); margin-bottom: 8px;">위상각 값이 공란인 이유</div>
         <div style="font-size:12px; color:var(--toss-grey); line-height:1.7; background:#F8FAFC; padding:12px; border-radius:12px;">
-            현재 측정 장비가 위상각(PhA) 미지원 사양이라 값이 표시되지 않았습니다.<br><br>
-            고사양 체성분 장비에서 PhA가 제공됩니다.
-            장비 모델/사양에서 PhA 또는 phase angle 항목을 확인해 주세요.
+            현재 측정 장비가 위상각 미지원 사양이라 값이 표시되지 않았습니다.<br><br>
+            고사양 체성분 장비에서 위상각이 제공됩니다.
+            장비 모델/사양에서 위상각 항목을 확인해 주세요.
         </div>
         <button class="add-record-btn" style="margin-top:12px; margin-bottom:0;" onclick="closePhaUnavailableInfo()">확인</button>
+
     </div>
 </div>
 
@@ -1476,6 +1819,7 @@
         </div>
 
         <button class="add-record-btn" style="margin-top:12px; margin-bottom:0;" onclick="closeCoachTodoModal()">확인</button>
+
     </div>
 </div>
 
@@ -1489,11 +1833,16 @@
         </div>
         <div class="share-platform-row">
             <button class="share-channel-btn" onclick="shareCapturedGraph('instagram')"><div class="share-icon-circle" style="background: linear-gradient(45deg, #f09433, #dc2743, #bc1888);">📸</div><span>인스타 스토리</span></button>
+
             <button class="share-channel-btn" onclick="openCafePickerFromShare()"><div class="share-icon-circle" style="background: #03C75A; font-size:18px;">N</div><span>비만약 네이버 카페</span></button>
+
             <button class="share-channel-btn" onclick="shareCapturedGraph('kakao')"><div class="share-icon-circle" style="background: #FEE500; color:#191F28;">💬</div><span>카카오톡</span></button>
+
             <button class="share-channel-btn" onclick="downloadCapturedGraph()"><div class="share-icon-circle" style="background: #8B95A1;">💾</div><span>이미지 저장</span></button>
+
         </div>
         <button class="add-record-btn" style="background-color:var(--toss-light-grey); color:var(--toss-black); margin-top:16px; margin-bottom: 4px;" onclick="closeShareModal()">취소</button>
+
     </div>
 </div>
 
@@ -1503,6 +1852,88 @@
         <div style="font-size: 12px; color: var(--toss-grey); text-align: center;">원하는 커뮤니티를 선택해서 바로 이동하세요.</div>
         <div class="cafe-picker-list" id="cafePickerList"></div>
         <button class="add-record-btn" style="background-color:var(--toss-light-grey); color:var(--toss-black); margin-top:14px; margin-bottom: 0;" onclick="closeCafePicker()">닫기</button>
+
+    </div>
+</div>
+
+
+<div class="onboarding-overlay" id="onboardingOverlay">
+    <div class="onboarding-bg" aria-hidden="true">
+        <span class="onboarding-cloud c1"></span>
+        <span class="onboarding-cloud c2"></span>
+        <span class="onboarding-cloud c3"></span>
+        <span class="onboarding-cloud c4"></span>
+    </div>
+
+    <div class="onboarding-sheet">
+
+        <div class="onboarding-progress" id="onboardingProgress">
+            <span class="active"></span><span></span><span></span><span></span>
+        </div>
+
+        <div class="onboarding-step active" data-step="0">
+            <div class="onboarding-intro-desc">비만약 처방을 받고 계신가요?<br>인바디 데이터와 함께, 내 몸 변화를 확인해보세요.</div>
+        </div>
+
+        <div class="onboarding-step" data-step="1">
+            <div class="onboarding-title">어떤 약을 투약하고 계신가요?</div>
+            <div class="onboarding-sub">현재 관리 중인 비만 치료제를 선택해 주세요.</div>
+            <select id="onboardingMed" class="onboarding-select">
+                <option value="" selected>비만약 종류를 선택해 주세요</option>
+                <option value="마운자로(Mounjaro)">마운자로(Mounjaro)</option>
+                <option value="위고비(Wegovy)">위고비(Wegovy)</option>
+                <option value="삭센다(Saxenda)">삭센다(Saxenda)</option>
+                <option value="오젬픽(Ozempic)">오젬픽(Ozempic)</option>
+            </select>
+        </div>
+
+        <div class="onboarding-step" data-step="2">
+            <div class="onboarding-title">투약 용량을 골라주세요.</div>
+            <div class="onboarding-sub">가장 최근에 투약한 용량을 선택해 주세요. 이후에도 수정할 수 있어요.</div>
+            <select id="onboardingDose" class="onboarding-select">
+                <option value="" selected>투약 용량을 선택해 주세요</option>
+                <option value="0.25">0.25 mg</option>
+                <option value="0.5">0.5 mg</option>
+                <option value="0.75">0.75 mg</option>
+                <option value="2.5">2.5 mg</option>
+                <option value="7.5">7.5 mg</option>
+                <option value="10">10 mg</option>
+            </select>
+        </div>
+
+        <div class="onboarding-step" data-step="3">
+            <div class="onboarding-title">투약 부위를 골라주세요.</div>
+            <div class="onboarding-sub">가장 최근에 주사한 부위를 선택해 주세요. 이후에도 수정할 수 있어요.</div>
+            <select id="onboardingSite" class="onboarding-select">
+                <option value="" selected>주사 부위를 선택해 주세요</option>
+                <optgroup label="복부">
+                    <option value="복부 - 왼쪽">복부 - 왼쪽</option>
+                    <option value="복부 - 오른쪽">복부 - 오른쪽</option>
+                </optgroup>
+                <optgroup label="허벅지">
+                    <option value="허벅지 - 왼쪽">허벅지 - 왼쪽</option>
+                    <option value="허벅지 - 오른쪽">허벅지 - 오른쪽</option>
+                </optgroup>
+                <optgroup label="팔">
+                    <option value="팔 - 왼팔">팔 - 왼팔</option>
+                    <option value="팔 - 오른팔">팔 - 오른팔</option>
+                </optgroup>
+            </select>
+        </div>
+
+        <div class="onboarding-loading" id="onboardingLoading" aria-live="polite">
+            <div class="onboarding-loading-spinner" aria-hidden="true"></div>
+            <div class="onboarding-loading-title">좋아요. 조금만 기다려주세요.</div>
+            <div class="onboarding-loading-sub">정보를 반영 중이에요.</div>
+        </div>
+        <div class="onboarding-actions" id="onboardingActions">
+            <button class="onboarding-btn ghost" id="onboardingBackBtn" type="button">이전</button>
+
+            <button class="onboarding-btn primary" id="onboardingNextBtn" type="button">다음</button>
+
+        </div>
+        <div class="onboarding-help" id="onboardingDefaultInfo">입력한 정보는 투약 기록 기본값에 반영되며, 이후에도 수정할 수 있어요.</div>
+        <button class="onboarding-skip-btn" id="onboardingSkipBtn" type="button" aria-label="투약 정보 입력 없이 먼저 둘러보기">먼저 둘러보기</button>
     </div>
 </div>
 
@@ -1641,6 +2072,8 @@
         localStorage.setItem(REWARD_TOTAL_POINTS_KEY, String(safeState.totalPoints));
         const badge = document.getElementById('rewardPointBadge');
         if (badge) badge.innerText = formatPoints(safeState.totalPoints) + 'p';
+        const topBadge = document.getElementById('topRewardPointBadge');
+        if (topBadge) topBadge.innerHTML = '<span class="point-label">인케어 포인트</span><span class="point-value">' + formatPoints(safeState.totalPoints) + 'p</span>';
         const bannerStatus = document.getElementById('rewardBannerStatus');
         if (bannerStatus) bannerStatus.innerHTML = '지금까지 모은 인케어 리워드예요.<br>눌러서 이번 달 인케어 리워드를 확인하세요.';
         const totalTxt = document.getElementById('rewardTotalPointsTxt');
@@ -1804,29 +2237,77 @@
         if(tabName === 'diary') {
             if (diaryTab) diaryTab.classList.add('active');
             if (navDiary) navDiary.classList.add('active');
+            if (typeof initOnboardingFlow === 'function') initOnboardingFlow(true);
         } else if(tabName === 'analysis') {
             if (analysisTab) analysisTab.classList.add('active');
             if (navAnalysis) navAnalysis.classList.add('active');
         }
     }
 
-    function toggleViewMode(mode) {
-        document.getElementById('btnFeedView').classList.remove('active');
-        document.getElementById('btnTableView').classList.remove('active');
-        document.getElementById('feedViewArea').classList.remove('show-active');
-        document.getElementById('tableViewArea').classList.remove('show-active');
-        
-        if(mode === 'feed') {
-            document.getElementById('btnFeedView').classList.add('active');
-            document.getElementById('feedViewArea').classList.add('show-active');
-        } else if(mode === 'table') {
-            document.getElementById('btnTableView').classList.add('active');
-            document.getElementById('tableViewArea').classList.add('show-active');
-        }
-        applyFeedCollapse();
+    function toggleMetricPanel() {
+        const panel = document.getElementById('graphMetricPanel');
+        const btn = document.getElementById('metricToggleBtn');
+        if (!panel || !btn) return;
+        const willShow = panel.classList.contains('is-hidden');
+        panel.classList.toggle('is-hidden', !willShow);
+        btn.innerText = willShow ? '숨김' : '지표';
+        btn.title = willShow ? '지표 숨기기' : '지표 보기';
     }
-
-    function toggleFeedMore() {
+    let injectionCalendarDate = new Date(2026, 5, 1);
+    let selectedInjectionDate = '2026-06-04';
+    const injectionCalendarRecords = {
+        '2026-06-04': { med: '위고비', dose: '0.5 mg', site: '우측 허벅지', side: '메스꺼움 (약간 유)' },
+        '2026-05-28': { med: '위고비', dose: '0.25 mg', site: '왼쪽 복부', side: '증상 없음' },
+        '2026-05-21': { med: '위고비', dose: '0.25 mg', site: '오른쪽 복부', side: '변비' },
+        '2026-05-14': { med: '위고비', dose: '0.25 mg', site: '오른쪽 복부', side: '두통' },
+        '2026-05-07': { med: '위고비', dose: '0.25 mg', site: '왼쪽 허벅지', side: '증상 없음' },
+        '2026-04-30': { med: '위고비', dose: '0.25 mg', site: '오른쪽 허벅지', side: '증상 없음' }
+    };
+    function renderInjectionCalendar() {
+        const grid = document.getElementById('injectionCalendarGrid');
+        const label = document.getElementById('calendarMonthLabel');
+        if (!grid || !label) return;
+        const year = injectionCalendarDate.getFullYear();
+        const month = injectionCalendarDate.getMonth();
+        label.textContent = `${year}년 ${month + 1}월`;
+        const firstDay = new Date(year, month, 1).getDay();
+        const lastDate = new Date(year, month + 1, 0).getDate();
+        const cells = [];
+        for (let i = 0; i < firstDay; i += 1) cells.push('<div class="calendar-day empty" aria-hidden="true"></div>');
+        for (let day = 1; day <= lastDate; day += 1) {
+            const key = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+            const record = injectionCalendarRecords[key];
+            const classes = ['calendar-day'];
+            if (record) classes.push('has-record');
+            if (key === selectedInjectionDate) classes.push('selected');
+            cells.push(`<button type="button" class="${classes.join(' ')}" onclick="selectInjectionCalendarDate('${key}')">${day}${record ? '<span class="calendar-dot" aria-hidden="true"></span>' : ''}</button>`);
+        }
+        grid.innerHTML = cells.join('');
+        updateInjectionCalendarDetail();
+    }
+    function selectInjectionCalendarDate(dateKey) { selectedInjectionDate = dateKey; renderInjectionCalendar(); }
+    function updateInjectionCalendarDetail() {
+        const detail = document.getElementById('injectionCalendarDetail');
+        if (!detail) return;
+        const record = injectionCalendarRecords[selectedInjectionDate];
+        const date = selectedInjectionDate ? selectedInjectionDate.replace(/-/g, '.') : '';
+        detail.innerHTML = record ? `<strong>${date} 투약 기록</strong><br>💉 ${record.med} ${record.dose} · ${record.site}<br>부작용: ${record.side}` : `<strong>${date}</strong><br>이 날짜에는 저장된 투약 기록이 없어요.`;
+    }
+    function changeInjectionCalendarMonth(offset) {
+        injectionCalendarDate = new Date(injectionCalendarDate.getFullYear(), injectionCalendarDate.getMonth() + offset, 1);
+        selectedInjectionDate = '';
+        renderInjectionCalendar();
+    }
+    function toggleViewMode(mode) {
+        ['feed', 'table', 'calendar'].forEach((view) => {
+            document.getElementById(`btn${view.charAt(0).toUpperCase() + view.slice(1)}View`)?.classList.remove('active');
+            document.getElementById(`${view}ViewArea`)?.classList.remove('show-active');
+        });
+        document.getElementById(`btn${mode.charAt(0).toUpperCase() + mode.slice(1)}View`)?.classList.add('active');
+        document.getElementById(`${mode}ViewArea`)?.classList.add('show-active');
+        if (mode === 'calendar') renderInjectionCalendar();
+        applyFeedCollapse();
+    }    function toggleFeedMore() {
         feedExpanded = !feedExpanded;
         applyFeedCollapse();
     }
@@ -1878,11 +2359,123 @@
         moreBtn.textContent = feedExpanded ? '접기' : '더보기';
     }
 
+    const GRAPH_PERIOD_KEY = 'incareGraphPeriod';
+    const DEFAULT_GRAPH_PERIOD = { start: '2024-07-10', end: '2026-07-17', startAuto: true, endAuto: true };
+
+    function formatGraphPeriodDate(value) {
+        if (!value) return '';
+        const parts = value.split('-');
+        if (parts.length !== 3) return value;
+        return `${parts[0]}.${parts[1]}.${parts[2]}`;
+    }
+
+    function getGraphPeriodState() {
+        try {
+            const saved = JSON.parse(localStorage.getItem(GRAPH_PERIOD_KEY) || 'null');
+            return { ...DEFAULT_GRAPH_PERIOD, ...(saved || {}) };
+        } catch (error) {
+            return { ...DEFAULT_GRAPH_PERIOD };
+        }
+    }
+
+    function updateGraphPeriodLabels() {
+        const state = getGraphPeriodState();
+        const start = new Date(`${state.start}T00:00:00`);
+        const end = new Date(`${state.end}T00:00:00`);
+        const labelArea = document.getElementById('graphLabels');
+        if (!labelArea || Number.isNaN(start.getTime()) || Number.isNaN(end.getTime())) return;
+        const total = end.getTime() - start.getTime();
+        const labels = Array.from({ length: 5 }, (_, index) => {
+            const date = new Date(start.getTime() + (total * index / 4));
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            return `<span>${year}.${month}</span>`;
+        });
+        labelArea.innerHTML = labels.join('');
+    }
+    function updateGraphPeriodSummary() {
+        const state = getGraphPeriodState();
+        const startDate = new Date(`${state.start}T00:00:00`);
+        const endDate = new Date(`${state.end}T00:00:00`);
+        const days = Number.isNaN(startDate.getTime()) || Number.isNaN(endDate.getTime())
+            ? 0
+            : Math.max(0, Math.floor((endDate - startDate) / 86400000) + 1);
+        const daysEl = document.getElementById('graphPeriodDays');
+        const rangeEl = document.getElementById('graphPeriodRange');
+        if (daysEl) daysEl.textContent = `${days.toLocaleString('ko-KR')}일`;
+        if (rangeEl) rangeEl.textContent = `${formatGraphPeriodDate(state.start)}~${formatGraphPeriodDate(state.end)}`;
+        updateGraphPeriodLabels();
+    }
+
+    function openGraphPeriodModal() {
+        const state = getGraphPeriodState();
+        const modal = document.getElementById('graphPeriodModal');
+        const startAuto = document.getElementById('periodStartAuto');
+        const endAuto = document.getElementById('periodEndAuto');
+        const startDate = document.getElementById('periodStartDate');
+        const endDate = document.getElementById('periodEndDate');
+        if (!modal || !startAuto || !endAuto || !startDate || !endDate) return;
+        startAuto.checked = state.startAuto !== false;
+        endAuto.checked = state.endAuto !== false;
+        startDate.value = state.start || DEFAULT_GRAPH_PERIOD.start;
+        endDate.value = state.end || DEFAULT_GRAPH_PERIOD.end;
+        toggleGraphPeriodInputs();
+        modal.style.display = 'flex';
+    }
+
+    function closeGraphPeriodModal() {
+        const modal = document.getElementById('graphPeriodModal');
+        if (modal) modal.style.display = 'none';
+    }
+
+    function toggleGraphPeriodInputs() {
+        const startAuto = document.getElementById('periodStartAuto');
+        const endAuto = document.getElementById('periodEndAuto');
+        const startDate = document.getElementById('periodStartDate');
+        const endDate = document.getElementById('periodEndDate');
+        const startLabel = document.getElementById('periodStartLabel');
+        const endLabel = document.getElementById('periodEndLabel');
+        if (startAuto && startDate) startDate.disabled = startAuto.checked;
+        if (endAuto && endDate) endDate.disabled = endAuto.checked;
+        if (startLabel && startAuto && startDate) {
+            startLabel.textContent = startAuto.checked ? '시작 (최초)' : `시작 (${formatGraphPeriodDate(startDate.value)})`;
+        }
+        if (endLabel && endAuto && endDate) {
+            endLabel.textContent = endAuto.checked ? '종료 (최근)' : `종료 (${formatGraphPeriodDate(endDate.value)})`;
+        }
+    }
+
+    function saveGraphPeriod() {
+        const state = getGraphPeriodState();
+        const startAuto = document.getElementById('periodStartAuto');
+        const endAuto = document.getElementById('periodEndAuto');
+        const startDate = document.getElementById('periodStartDate');
+        const endDate = document.getElementById('periodEndDate');
+        if (!startAuto || !endAuto || !startDate || !endDate) return;
+        const nextState = {
+            start: startAuto.checked ? state.start : startDate.value,
+            end: endAuto.checked ? state.end : endDate.value,
+            startAuto: startAuto.checked,
+            endAuto: endAuto.checked
+        };
+        toggleGraphPeriodInputs();
+        if (!nextState.start || !nextState.end) {
+            alert('시작날짜와 종료날짜를 모두 선택해 주세요.');
+            return;
+        }
+        if (nextState.start > nextState.end) {
+            alert('시작날짜는 종료날짜보다 늦을 수 없어요.');
+            return;
+        }
+        localStorage.setItem(GRAPH_PERIOD_KEY, JSON.stringify(nextState));
+        updateGraphPeriodSummary();
+        closeGraphPeriodModal();
+    }
     function openSpecModal() { document.getElementById('specModal').style.display = 'flex'; }
     function closeSpecModal() { document.getElementById('specModal').style.display = 'none'; }
 
     const DOSE_SNAP_POINTS = [2.5, 5, 7.5];
-    const DOSE_SNAP_THRESHOLD = 0.2;
+    const DOSE_SNAP_THRESHOLD = 2;
 
     function applyDoseSnap(rawValue) {
         if (!Number.isFinite(rawValue)) return rawValue;
@@ -1896,42 +2489,23 @@
     }
 
     function handleDoseSliderInput() {
-        const slider = document.getElementById('inputDose');
-        if (!slider) return;
-        const raw = parseFloat(slider.value);
-        const snapped = applyDoseSnap(raw);
-        if (Number.isFinite(snapped)) slider.value = String(snapped);
-        updateDoseSliderLabel();
+        return;
     }
 
     function getSelectedDoseValue() {
-        const slider = document.getElementById('inputDose');
-        if (!slider) return "";
-        const value = applyDoseSnap(parseFloat(slider.value));
-        if (!Number.isFinite(value)) return "";
-        return value.toFixed(value < 1 ? 2 : 1).replace(/\.0$/, "");
+        const select = document.getElementById('inputDose');
+        return select ? (select.value || '') : '';
     }
     function setDoseSliderByValue(dose) {
-        const slider = document.getElementById('inputDose');
-        if (!slider) return;
-        const parsed = parseFloat(dose);
-        if (Number.isFinite(parsed)) slider.value = String(parsed);
-        updateDoseSliderLabel();
+        const select = document.getElementById('inputDose');
+        if (select) select.value = String(dose || '');
     }
     function selectInjectionSite(site) {
         const select = document.getElementById('inputSite');
         if (select) select.value = site || "";
     }
     function updateDoseSliderLabel() {
-        const slider = document.getElementById('inputDose');
-        const label = document.getElementById('doseCurrentLabel');
-        if (!slider || !label) return;
-        const value = parseFloat(slider.value);
-        if (!Number.isFinite(value)) {
-            label.innerText = "0.25 mg";
-            return;
-        }
-        label.innerText = (value < 1 ? value.toFixed(2) : value.toFixed(1)).replace(/\.0$/, "") + " mg";
+        return;
     }
     
     function saveSpecData() {
@@ -1958,6 +2532,15 @@
         closeSpecModal();
     }
 
+    function toggleOptionalDiarySection(forceOpen) {
+        const section = document.getElementById('optionalDiarySection');
+        const btn = document.getElementById('optionalDiaryToggleBtn');
+        if (!section || !btn) return;
+
+        const willOpen = typeof forceOpen === 'boolean' ? forceOpen : section.style.display === 'none';
+        section.style.display = willOpen ? 'block' : 'none';
+        btn.innerText = willOpen ? '선택 입력 접기 ▴' : '선택 입력 더하기 (+최대 150p) ▾';
+    }
     function openModal() {
         const last = loadLastInjectionSelection();
         if (last) {
@@ -1968,6 +2551,7 @@
             if (last.site) selectInjectionSite(last.site);
         }
         document.getElementById('recordModal').style.display = 'flex';
+        toggleOptionalDiarySection(false);
         updateTextBonusHints();
     }
     function closeModal() { document.getElementById('recordModal').style.display = 'none'; editingFeedCard = null; }
@@ -2155,9 +2739,11 @@
 
             let html = '';
             mapped.forEach((item) => {
-                html += `<button class="cafe-picker-btn" onclick="goToCafe('${item.href}')">${item.label}</button>`;
+                html += `<button class="cafe-picker-btn" onclick="goToCafe('${item.href}')">${item.label}</button>
+`;
             });
-            html += `<button class="cafe-picker-btn main" onclick="goToCafe('https://cafe.naver.com/')">🌐 네이버 카페 메인으로 이동</button>`;
+            html += `<button class="cafe-picker-btn main" onclick="goToCafe('https://cafe.naver.com/')">🌐 네이버 카페 메인으로 이동</button>
+`;
             listEl.innerHTML = html;
         }
         document.getElementById('cafePickerModal').style.display = 'flex';
@@ -2402,9 +2988,9 @@
                 "식사량이 줄면 근육도 함께 감소할 수 있어요. " +
                 "골격근량을 보면 단백질 섭취와 근력운동이 충분한지 점검할 수 있고, 요요 위험을 낮추는 데 도움 됩니다.";
         } else if (metric === 'pha') {
-            titleEl.innerText = "위상각(PhA)이란?";
+            titleEl.innerText = "위상각이란?";
             bodyEl.innerHTML =
-                "<b>위상각(PhA)이란?</b><br>" +
+                "<b>위상각이란?</b><br>" +
                 "세포막 건강과 체내 회복 상태를 반영하는 인바디 지표입니다.<br><br>" +
                 "<b>위상각은 왜 중요할까요?</b><br>" +
                 "영양 부족이나 컨디션 저하 시 하락할 수 있어요. " +
@@ -2413,9 +2999,9 @@
                 "측정 장비가 위상각 미지원 사양일 수 있습니다. " +
                 "위상각은 고사양 장비에서 제공될 수 있습니다.";
         } else if (metric === 'ecw') {
-            titleEl.innerText = "세포외수분비(ECW Ratio)란?";
+            titleEl.innerText = "세포외수분비란?";
             bodyEl.innerHTML =
-                "<b>세포외수분비(ECW Ratio)란?</b><br>" +
+                "<b>세포외수분비란?</b><br>" +
                 "몸속 수분 중 세포 밖에 분포한 수분의 비율입니다.<br><br>" +
                 "<b>왜 확인할까요?</b><br>" +
                 "수치가 높아지는 흐름은 부종이나 수분 균형 변화를 참고하는 데 도움이 될 수 있습니다. " +
@@ -2648,9 +3234,9 @@
         });
         let labelArea = document.getElementById('graphLabels');
         if (currentScale <= 0.7) {
-            labelArea.innerHTML = "<span>1주차</span><span>3주차</span><span>5주차</span><span>7주차</span><span>9주차</span><span>10주차</span>";
+            updateGraphPeriodLabels();
         } else {
-            labelArea.innerHTML = "<span>5/14</span><span>5/21</span><span>5/28</span><span>6/04</span><span>6/11</span><span>6/18</span>";
+            updateGraphPeriodLabels();
         }
     }
 
@@ -2687,7 +3273,9 @@
             actions.className = 'feed-actions';
             actions.innerHTML = `
                 <button type="button" class="feed-action-btn" onclick="editFeedRecord(this.closest('.history-feed-item'))">수정</button>
+
                 <button type="button" class="feed-action-btn delete" onclick="deleteFeedRecord(this.closest('.history-feed-item'))">삭제</button>
+
             `;
             card.appendChild(actions);
         });
@@ -2742,6 +3330,7 @@
         document.getElementById('inputExercise').value = getFeedMemoValue(card, '운동');
         updateTextBonusHints();
         document.getElementById('recordModal').style.display = 'flex';
+        toggleOptionalDiarySection(true);
     }
 
     function saveRecord() {
@@ -2861,7 +3450,9 @@
             </div>
             <div class="feed-actions">
                 <button type="button" class="feed-action-btn" onclick="editFeedRecord(this.closest('.history-feed-item'))">수정</button>
+
                 <button type="button" class="feed-action-btn delete" onclick="deleteFeedRecord(this.closest('.history-feed-item'))">삭제</button>
+
             </div>
         `;
         feedArea.insertBefore(newItem, feedArea.firstChild);
@@ -2873,7 +3464,8 @@
             <td>06/04</td>
             <td>${dose}m(${site.split(' - ')[0]})</td>
             <td>미입력</td><td>미입력</td><td>미입력</td>
-            <td><button class="pha-value-btn" onclick="openPhaUnavailableInfo()">—</button></td>
+            <td><button class="pha-value-btn" onclick="openPhaUnavailableInfo()">—</button>
+</td>
             <td>${selectedSideEffects.length > 0 ? selectedSideEffects[0].replace(/🤢 |🤮 |🤕 |⚡ |💩 |🥱 |🩸 /g, '') : '없음'}</td>
             <td>${diet} / ${exercise}</td>
         `;
@@ -2904,15 +3496,207 @@
         applyFeedCollapse();
         applyTableCollapse();
     }
+    const ONBOARDING_PROFILE_KEY = 'incareOnboardingProfile';
+    const ONBOARDING_NICKNAME_SET_KEY = 'incareNicknameSet';
+    const ONBOARDING_SKIP_SESSION_KEY = 'incareOnboardingSkippedSession';
+
+    function normalizeNickname(name) {
+        return String(name || '').trim().toLowerCase();
+    }
+
+    function loadNicknameSet() {
+        try {
+            const parsed = JSON.parse(localStorage.getItem(ONBOARDING_NICKNAME_SET_KEY) || '[]');
+            return Array.isArray(parsed) ? parsed : [];
+        } catch (_) {
+            return [];
+        }
+    }
+
+    function saveNicknameSet(list) {
+        localStorage.setItem(ONBOARDING_NICKNAME_SET_KEY, JSON.stringify(Array.from(new Set(list))));
+    }
+
+    function validateOnboardingName(name) {
+        const value = String(name || '').trim();
+        if (!value) return { ok: false, message: '이름을 입력해 주세요.' };
+        if (value.length < 2 || value.length > 12) return { ok: false, message: '이름은 2~12자로 입력해 주세요.' };
+        if (/\s/.test(value)) return { ok: false, message: '공백 없이 입력해 주세요.' };
+        if (!/^[가-힣a-zA-Z0-9]+$/.test(value)) return { ok: false, message: '한글/영문/숫자만 사용할 수 있어요.' };
+
+        const currentProfile = JSON.parse(localStorage.getItem(ONBOARDING_PROFILE_KEY) || '{}');
+        const currentName = normalizeNickname(currentProfile.name || '');
+        const target = normalizeNickname(value);
+        const list = loadNicknameSet();
+        if (list.includes(target) && target !== currentName) {
+            return { ok: false, message: '이미 사용 중인 이름이에요. 다른 이름을 입력해 주세요.' };
+        }
+        return { ok: true, message: '' };
+    }
+    let onboardingStep = 0;
+
+    function getOnboardingElements() {
+        return {
+            overlay: document.getElementById('onboardingOverlay'),
+            steps: Array.from(document.querySelectorAll('.onboarding-step')),
+            progress: Array.from(document.querySelectorAll('#onboardingProgress span')),
+            backBtn: document.getElementById('onboardingBackBtn'),
+            nextBtn: document.getElementById('onboardingNextBtn'),
+            med: document.getElementById('onboardingMed'),
+            dose: document.getElementById('onboardingDose'),
+            site: document.getElementById('onboardingSite'),
+            skipBtn: document.getElementById('onboardingSkipBtn'),
+            actions: document.getElementById('onboardingActions'),
+            defaultInfo: document.getElementById('onboardingDefaultInfo'),
+            loading: document.getElementById('onboardingLoading')
+        };
+    }
+
+    function updateOnboardingDoseLabel() {}
+
+    function renderOnboardingStep() {
+        const el = getOnboardingElements();
+        el.steps.forEach((step, idx) => step.classList.toggle('active', idx === onboardingStep));
+        el.progress.forEach((dot, idx) => dot.classList.toggle('active', idx <= onboardingStep));
+        if (el.backBtn) el.backBtn.style.display = onboardingStep === 0 ? 'none' : '';
+        if (el.nextBtn) el.nextBtn.innerText = onboardingStep === 0 ? '인케어 시작하기' : (onboardingStep === el.steps.length - 1 ? '시작하기' : '다음');
+        if (el.skipBtn) el.skipBtn.style.display = onboardingStep === 1 ? 'inline-flex' : 'none';
+        if (el.actions) el.actions.classList.toggle('intro-mode', onboardingStep === 0);
+        const sheet = document.querySelector('.onboarding-sheet');
+        if (sheet) {
+            sheet.classList.toggle('intro-mode-layout', onboardingStep === 0);
+            sheet.classList.toggle('input-mode-layout', onboardingStep >= 1);
+        }
+        if (el.defaultInfo) el.defaultInfo.style.display = onboardingStep === 0 ? 'none' : 'block';
+    }
+
+    function saveOnboardingProfile() {
+        const el = getOnboardingElements();
+        const profile = {
+            med: el.med?.value || '마운자로(Mounjaro)',
+            dose: Number(el.dose?.value || 0.25),
+            site: el.site?.value || ''
+        };
+        localStorage.setItem(ONBOARDING_PROFILE_KEY, JSON.stringify(profile));
+        try { sessionStorage.removeItem(ONBOARDING_SKIP_SESSION_KEY); } catch (_) {}
+
+        const medInput = document.getElementById('inputMed');
+        if (medInput && Array.from(medInput.options).some((opt) => opt.value === profile.med)) medInput.value = profile.med;
+        if (typeof setDoseSliderByValue === 'function') setDoseSliderByValue(profile.dose);
+        const siteInput = document.getElementById('inputSite');
+        if (siteInput && profile.site) siteInput.value = profile.site;
+    }
+
+    function closeOnboardingFlow() {
+        const el = getOnboardingElements();
+        if (el.overlay) el.overlay.style.display = 'none';
+    }
+
+    function finishOnboarding() {
+        const el = getOnboardingElements();
+        if (!(el.med?.value || '').trim()) {
+            onboardingStep = 1;
+            renderOnboardingStep();
+            alert('비만약 종류를 선택해 주세요.');
+            el.med?.focus();
+            return;
+        }
+        if (!(el.dose?.value || '').trim()) {
+            onboardingStep = 2;
+            renderOnboardingStep();
+            alert('투약 용량을 선택해 주세요.');
+            el.dose?.focus();
+            return;
+        }
+        if (!(el.site?.value || '').trim()) {
+            onboardingStep = 3;
+            renderOnboardingStep();
+            alert('투약 부위를 선택해 주세요.');
+            el.site?.focus();
+            return;
+        }
+saveOnboardingProfile();
+        const loading = document.getElementById('onboardingLoading');
+        if (loading) {
+            loading.classList.add('active');
+            const controls = [el.backBtn, el.nextBtn, el.skipBtn];
+            controls.forEach((control) => { if (control) control.disabled = true; });
+            window.setTimeout(() => {
+                closeOnboardingFlow();
+                loading.classList.remove('active');
+                controls.forEach((control) => { if (control) control.disabled = false; });
+            }, 1500);
+        } else {
+            closeOnboardingFlow();
+        }
+    }
+
+    function initOnboardingFlow(forceOpen = false) {
+        const el = getOnboardingElements();
+        if (!el.overlay) return;
+        const forceOnboarding = forceOpen || new URLSearchParams(window.location.search).get('onboarding') === '1' || window.location.hash === '#onboarding';
+        let skippedSession = false;
+        try { skippedSession = sessionStorage.getItem(ONBOARDING_SKIP_SESSION_KEY) === '1'; } catch (_) {}
+        if ((skippedSession || localStorage.getItem(ONBOARDING_PROFILE_KEY)) && !forceOnboarding) {
+            closeOnboardingFlow();
+            return;
+        }
+        el.overlay.style.display = 'flex';
+        onboardingStep = 0;
+        renderOnboardingStep();
+
+        if (el.skipBtn) el.skipBtn.onclick = function () {
+            try { sessionStorage.setItem(ONBOARDING_SKIP_SESSION_KEY, '1'); } catch (_) {}
+            closeOnboardingFlow();
+        };
+        if (el.backBtn) el.backBtn.onclick = function () {
+            if (onboardingStep > 0) {
+                onboardingStep -= 1;
+                renderOnboardingStep();
+            }
+        };
+        if (el.nextBtn) el.nextBtn.onclick = function () {
+            if (onboardingStep === 0) {
+                onboardingStep = 1;
+                renderOnboardingStep();
+                return;
+            }
+            if (onboardingStep === 1 && !(el.med?.value || '').trim()) {
+                alert('비만약 종류를 선택해 주세요.');
+                el.med?.focus();
+                return;
+            }
+            if (onboardingStep === 2 && !(el.dose?.value || '').trim()) {
+                alert('투약 용량을 선택해 주세요.');
+                el.dose?.focus();
+                return;
+            }
+            if (onboardingStep === 3) {
+                finishOnboarding();
+                return;
+            }
+            onboardingStep += 1;
+            renderOnboardingStep();
+        };
+    }
+    window.reopenOnboarding = function () {
+        localStorage.removeItem('incareOnboardingProfile');
+        initOnboardingFlow(true);
+    };
+
     window.addEventListener('load', function () {
         if (window.location.hash === '#analysis') {
             switchTab('analysis');
+        } else {
+            switchTab('diary');
         }
         initMetricSetupFromStorage();
+        updateGraphPeriodSummary();
         setDoseSliderByValue(0.25);
         updateIeScoreComparison(document.getElementById('ieScoreValue') ? document.getElementById('ieScoreValue').innerText : 82);
         buildIeScoreLeaderboard();
         setRewardTotalPoints(getRewardTotalPoints());
+        initOnboardingFlow();
 
         const firstSetupDone = localStorage.getItem('metricSetupDone');
         if (!firstSetupDone) {
@@ -2939,16 +3723,6 @@
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
 
 
 
