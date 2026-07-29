@@ -3697,20 +3697,6 @@ saveOnboardingProfile();
         buildIeScoreLeaderboard();
         setRewardTotalPoints(getRewardTotalPoints());
         initOnboardingFlow();
-
-        const firstSetupDone = localStorage.getItem('metricSetupDone');
-        if (!firstSetupDone) {
-            document.getElementById('metricSetupModal').style.display = 'flex';
-            localStorage.setItem('metricSetupDone', '1');
-        }
-
-        const today = new Date();
-        const reminderShownDate = localStorage.getItem('weeklyReminderShownDate');
-        const shouldShowWeekly = !reminderShownDate || ((today - new Date(reminderShownDate)) / (1000 * 60 * 60 * 24) >= 7);
-        if (shouldShowWeekly) {
-            document.getElementById('weeklyReminderModal').style.display = 'flex';
-            localStorage.setItem('weeklyReminderShownDate', today.toISOString());
-        }
         updateTodaySideEffectPreview();
         document.querySelectorAll('.metric-toggle').forEach((el) => el.addEventListener('change', previewMetricSetup));
         syncMetricVisibility(false);
@@ -3723,6 +3709,7 @@ saveOnboardingProfile();
 </script>
 </body>
 </html>
+
 
 
 
