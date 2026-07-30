@@ -762,7 +762,21 @@
             text-align: center;
         }
 
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 100; display: none; justify-content: center; backdrop-filter: blur(2px); }
+        .modal-overlay {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 390px;
+            height: 844px;
+            border-radius: 34px;
+            overflow: hidden;
+            background: rgba(0,0,0,0.4);
+            z-index: 100;
+            display: none;
+            justify-content: center;
+            backdrop-filter: blur(2px);
+        }
         .modal-window { background: white; width: 100%; border-radius: 26px 26px 0 0; padding: 24px 20px; max-height: 85%; overflow-y: auto; align-self: flex-end; }
         .share-window { background: white; width: 100%; border-radius: 26px 26px 0 0; padding: 16px 20px 18px; }
 
@@ -969,7 +983,8 @@
         }
         .onboarding-loading-title { color: #1E3A8A; font-size: 18px; font-weight: 800; line-height: 1.5; }
         .onboarding-loading-sub { margin-top: 7px; color: #56739C; font-size: 13px; }
-        @keyframes onboardingSpin { to { transform: rotate(360deg); } }        .onboarding-brand {
+        @keyframes onboardingSpin { to { transform: rotate(360deg); } }
+        .onboarding-brand {
             display: block;
             color: #0F2A57;
             font-size: 24px;
@@ -979,9 +994,19 @@
             line-height: 1.2;
             text-shadow: 0 1px 0 rgba(255,255,255,0.45);
         }
-        .onboarding-progress { display: none; }
-        .onboarding-progress span { flex: 1; height: 6px; background: #DEE7F5; border-radius: 999px; }
-        .onboarding-progress span.active { background: var(--toss-blue); }
+        .onboarding-progress {
+            display: none;
+            width: 84px;
+            gap: 6px;
+            margin: 0 0 10px auto;
+        }
+        .onboarding-progress span {
+            flex: 1;
+            height: 5px;
+            background: #D7E3F6;
+            border-radius: 999px;
+        }
+        .onboarding-progress span.active { background: #1D4ED8; }
         .onboarding-step { display: none; }
         .onboarding-step.active { display: block; }
         .onboarding-title {
@@ -1868,7 +1893,7 @@
     <div class="onboarding-sheet">
 
         <div class="onboarding-progress" id="onboardingProgress">
-            <span class="active"></span><span></span><span></span><span></span>
+            <span class="active"></span><span></span><span></span>
         </div>
 
         <div class="onboarding-step active" data-step="0">
@@ -3557,10 +3582,16 @@
     function renderOnboardingStep() {
         const el = getOnboardingElements();
         el.steps.forEach((step, idx) => step.classList.toggle('active', idx === onboardingStep));
-        el.progress.forEach((dot, idx) => dot.classList.toggle('active', idx <= onboardingStep));
+        const totalSteps = Math.max(1, el.steps.length - 1);
+        const completedSteps = Math.max(0, Math.min(totalSteps, onboardingStep));
+        const activeCount = Math.max(1, completedSteps);
+        el.progress.forEach((dot, idx) => dot.classList.toggle('active', idx < activeCount));
         if (el.backBtn) el.backBtn.style.display = onboardingStep === 0 ? 'none' : '';
         if (el.nextBtn) el.nextBtn.innerText = onboardingStep === 0 ? '인케어 시작하기' : (onboardingStep === el.steps.length - 1 ? '시작하기' : '다음');
         if (el.skipBtn) el.skipBtn.style.display = onboardingStep === 1 ? 'inline-flex' : 'none';
+        const progressWrap = document.getElementById('onboardingProgress');
+        if (progressWrap) progressWrap.style.display = onboardingStep >= 1 ? 'flex' : 'none';
+
         if (el.actions) el.actions.classList.toggle('intro-mode', onboardingStep === 0);
         const sheet = document.querySelector('.onboarding-sheet');
         if (sheet) {
@@ -3709,6 +3740,17 @@ saveOnboardingProfile();
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
 
 
 
