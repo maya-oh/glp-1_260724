@@ -319,15 +319,21 @@
             line-height: 1.45;
         }
                         .graph-summary-block { margin-bottom: 12px; }
-        .metric-graph-tabs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; margin: 12px 0 8px; }
+        .metric-graph-tabs { display: none; }
         .metric-graph-tab { min-width: 0; border: 1px solid #DCE6F4; background: #FFFFFF; color: #64748B; border-radius: 10px; padding: 9px 4px; font-size: 11px; line-height: 1.2; font-weight: 800; white-space: nowrap; cursor: pointer; transition: background .15s ease, border-color .15s ease, color .15s ease, transform .15s ease; }
         .metric-graph-tab:hover { border-color: #9DB7E5; color: #30496F; transform: translateY(-1px); }
         .metric-graph-tab:focus-visible { outline: 3px solid rgba(47,107,255,.20); outline-offset: 2px; }
         .metric-graph-tab.active { background: #30496F; border-color: #30496F; color: #FFFFFF; box-shadow: 0 3px 10px rgba(48,73,111,.18); }
-        .metric-graph-list { display: grid; margin-top: 8px; }
-        .metric-graph-card { display: none; border: 1px solid #E2E8F0; background: #fff; border-radius: 12px; padding: 10px 12px 12px; text-align: left; }
+        .metric-graph-list { display: grid; gap: 10px; margin-top: 8px; }
+        .metric-graph-card { display: block; border: 1px solid #E2E8F0; background: #fff; border-radius: 12px; padding: 10px 12px 12px; text-align: left; }
         .metric-graph-card.active { display: block; }
         .metric-graph-card:hover { border-color: #C9D8F2; box-shadow: 0 2px 10px rgba(48,73,111,0.10); }
+        .metric-graph-list > [data-metric-graph="pha"] { display:none; }
+        .metric-more-btn-wrap { display:flex; justify-content:center; margin-top:8px; padding-top:8px; border-top:1px solid #E5EDF8; margin-bottom:0; }
+        .metric-more-btn { display:inline-flex; align-items:center; gap:5px; border:0; background:transparent; color:#3B5C8A; padding:4px 8px; font-size:12px; font-weight:800; cursor:pointer; }
+        .metric-more-btn:hover { color:#1D4ED8; }
+        .metric-more-chevron { display:inline-block; width:7px; height:7px; margin-top:-3px; border-right:1.8px solid currentColor; border-bottom:1.8px solid currentColor; transform:rotate(45deg); transition:transform .18s ease; }
+        .metric-more-btn[aria-expanded="true"] .metric-more-chevron { transform:rotate(225deg); margin-top:3px; }
         .metric-graph-head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
         .metric-graph-head .name { font-size: 13px; font-weight: 800; color: #1F2E4D; }
         .metric-graph-head .value { margin-left: auto; font-size: 13px; font-weight: 800; color: #1F2E4D; }
@@ -340,8 +346,11 @@
         .metric-graph-svg .chart-points.fat circle { stroke: #EF4444; }
         .metric-graph-svg .chart-points.muscle circle { stroke: #43C2A4; }
         .metric-graph-svg .chart-points.pha circle { stroke: #0F766E; }
-        .metric-graph-svg .chart-injection-emoji { font-size: 24px; text-anchor: middle; dominant-baseline: middle; cursor: pointer; }
+        .metric-graph-svg .chart-missing-point circle { fill:#FFFFFF; stroke:#94A3B8; stroke-width:2; stroke-dasharray:2 2; } .chart-missing-point text { fill:#64748B; font-size:10px; font-weight:700; } .chart-missing-point { cursor:help; } .chart-injection-emoji { font-size: 24px; text-anchor: middle; dominant-baseline: middle; cursor: pointer; }
         .metric-graph-svg .chart-injection-emoji:hover, .metric-graph-svg .chart-injection-emoji:focus { font-size: 28px; }
+        .metric-more-axis { display:flex; justify-content:space-between; align-items:center; padding:5px 8px 0; color:#5D6E8B; font-size:10px; font-weight:700; letter-spacing:-.02em; }
+        .metric-more-axis span { flex:1; text-align:center; }
+        .metric-main-axis { margin-top:4px; }
         .graph-injection-popover { position: fixed; z-index: 1000; width: 190px; padding: 11px 12px; border: 1px solid #D7E3F5; border-radius: 13px; background: rgba(255,255,255,.98); box-shadow: 0 12px 28px rgba(31,46,77,.18); color: #30496F; opacity: 0; visibility: hidden; transform: translateY(5px); transition: opacity .16s ease, transform .16s ease; pointer-events: none; }
         .graph-injection-popover.is-visible { opacity: 1; visibility: visible; transform: translateY(0); }
         .graph-injection-popover .popover-kicker { display: flex; align-items: center; gap: 5px; margin-bottom: 7px; color: #1D4ED8; font-size: 10px; font-weight: 800; }
@@ -366,6 +375,9 @@
         .point-guide-item b { display:block; font-size: 12px; color:#1F2E4D; }
         .point-guide-item span { font-size: 11px; color:#30496F; font-weight:700; }
         .onboarding-goal-grid { display: grid; gap: 10px; margin-top: 4px; }
+        .analysis-onboarding-reopen { margin-top: 10px; display:flex; justify-content:flex-end; }
+        .analysis-onboarding-reopen-btn { border:1px solid #D9E6F8; background:#F8FBFF; color:#3B5C8A; font-size:11px; font-weight:700; border-radius:999px; padding:6px 10px; cursor:pointer; }
+        .analysis-onboarding-reopen-btn:hover { background:#EEF5FF; border-color:#BFD4F4; }
         .onboarding-goal-item label { display: block; margin-bottom: 4px; color: #30496F; font-size: 12px; font-weight: 700; }.graph-y-axis-labels { position: absolute; inset: 0; pointer-events: none; z-index: 5; font-size: 12px; font-weight: 800; line-height: 1; }
                 .graph-y-axis-label { position: absolute; left: 2px; padding: 3px 4px; border: 1px solid transparent; border-radius: 5px; background: rgba(255,255,255,0.92); white-space: nowrap; cursor: pointer; pointer-events: auto; font: inherit; line-height: 1; appearance: none; }
         .graph-y-axis-label:hover, .graph-y-axis-label:focus-visible { border-color: #C7D7EE; box-shadow: 0 2px 8px rgba(48,73,111,0.12); outline: none; }
@@ -421,7 +433,7 @@
             margin-left: 2px;
             font-weight: 600;
         }
-        .graph-axis-x { position: absolute; bottom: 8px; width: 100%; display: flex; justify-content: space-between; font-size: 10px; color: var(--toss-grey); padding: 0 15px; font-weight: 600; }
+        .graph-axis-x { position: absolute; bottom: 8px; width: 100%; display: flex; justify-content: space-between; font-size: 9px; color: var(--toss-grey); padding: 0 12px; font-weight: 700; white-space: nowrap; }
 
         
         .tooltip-box {
@@ -489,6 +501,12 @@
         .voc-action-btn .voc-btn-arrow { align-self:flex-end; margin-top:-18px; font-size:16px; line-height:1; font-weight:700; opacity:.8; }
         .voc-action-btn.primary { background:#EEF4FF; color:var(--toss-blue); border:1px solid #C9DCFF; }
         .voc-action-btn.secondary { background:#EEF4FF; color:var(--toss-blue); border:1px solid #C9DCFF; }
+        .voc-action-btn { position:relative; min-height:82px; justify-content:flex-start; white-space:normal; overflow:hidden; }
+        .voc-action-btn > span:first-child { display:block; max-width:calc(100% - 18px); word-break:keep-all; overflow-wrap:anywhere; }
+        .voc-action-btn .voc-btn-note { display:block; max-width:calc(100% - 18px); line-height:1.35; word-break:keep-all; overflow-wrap:anywhere; }
+        .voc-action-btn .voc-btn-arrow { position:absolute; right:10px; top:50%; margin:0; transform:translateY(-50%); }
+        .voc-action-btn:hover .voc-btn-arrow { transform:translate(2px,-50%); }
+        @media (max-width:380px) { .voc-action-row { grid-template-columns:1fr; } .voc-action-btn { min-height:70px; } }
         .table-more-wrap { text-align:center; margin-top:10px; }
         .table-more-btn { border:1px solid #DCE5F2; background:#fff; color:#64748B; border-radius:10px; padding:8px 18px; font-size:12px; font-weight:800; cursor:pointer; }
         .memo-row { margin-bottom: 6px; display: flex; }
@@ -534,14 +552,26 @@
             color:#64748B;
         }
 
-        .optional-diary-toggle { width:100%; display:flex; align-items:center; justify-content:space-between; padding:11px 12px; border:1px solid #DCE6F4; border-radius:12px; background:#F8FBFF; color:#30496F; font-size:13px; font-weight:800; cursor:pointer; }\n        .optional-diary-toggle:hover { background:#EEF5FF; border-color:#B8CFF1; }\n        .tag-pool { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 10px 0; }
+        .optional-diary-toggle { width:100%; display:flex; align-items:center; justify-content:space-between; padding:11px 12px; border:1px solid #DCE6F4; border-radius:12px; background:#F8FBFF; color:#30496F; font-size:13px; font-weight:800; cursor:pointer; }
+        .optional-diary-label { flex:0 0 auto; }
+        .optional-diary-point-note { margin-left:auto; margin-right:8px; color:#1D4ED8; font-size:11px; font-weight:800; }
+        .optional-diary-toggle:hover { background:#EEF5FF; border-color:#B8CFF1; }
+        .tag-pool { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 10px 0; }
         .tag-item { display: inline-flex; align-items: center; justify-content: center; min-height: 34px; padding: 6px 11px; border-radius: 999px; font-size: 12px; cursor: pointer; color: #4E5968; font-weight: 700; background: #FFFFFF; border: 1px solid #D9E2EC; box-shadow: 0 2px 5px rgba(15, 23, 42, 0.06); transition: all 0.18s ease; user-select: none; }
         .tag-item.selected { background: #EAF2FF; color: #1D4ED8; font-weight: 800; border-color: #9FC1F5; box-shadow: 0 2px 7px rgba(29, 78, 216, 0.12); }
+        .injection-site-title { margin:10px 0 6px; color:#334155; font-size:12px; font-weight:800; }
+        .injection-site-pool { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px; }
+        .injection-site-item { min-height:32px; padding:6px 8px; border-radius:10px; border:1px solid #D9E2EC; background:#FFFFFF; color:#4E5968; font-size:11px; font-weight:700; cursor:pointer; }
+        .injection-site-item.selected { background:#EAF2FF; border-color:#9FC1F5; color:#1D4ED8; font-weight:800; }
         .tag-item:hover { transform: translateY(-1px); border-color: #9FC1F5; background: #F8FBFF; }
 
         .form-group { margin-bottom: 14px; }
         .form-group label { display: block; font-size: 12px; color: var(--toss-grey); margin-bottom: 6px; font-weight: 600; }
         .form-control { width: 100%; padding: 11px 12px; border: none; background-color: var(--toss-light-grey); border-radius: 12px; font-size: 13px; color: var(--toss-black); outline: none; }
+        .inline-record-window { position: static !important; width: 100%; max-width: none; border-radius: 16px; background: #FFFFFF; border: 1px solid #E2E8F0; box-shadow: none; padding: 14px 12px; }
+        .record-inline-toolbar { display:flex; justify-content:flex-end; margin-top:12px; margin-bottom:8px; }
+        .record-inline-btn { border:1px solid #D9E6F8; background:#F8FBFF; color:#3B5C8A; border-radius:999px; padding:6px 10px; font-size:11px; font-weight:700; cursor:pointer; }
+        .record-inline-btn:hover { background:#EEF5FF; border-color:#BFD4F4; }
         .text-bonus-hint { margin-top:6px; margin-bottom:10px; font-size:11px; font-weight:700; line-height:1.35; }
         .text-bonus-hint.pending { color:#D97706; }
         .text-bonus-hint.done { color:#15803D; }
@@ -1152,6 +1182,70 @@
         .onboarding-help { margin-top: 10px; font-size: 12px; color: #56739C; text-align: center; }
         .onboarding-sheet.intro-mode-layout { padding-top: 220px; }
         .onboarding-sheet.input-mode-layout { padding-top: 170px; }
+        .onboarding-pen-options { display:grid; gap:10px; margin: 12px auto 0; max-width:420px; }
+        .onboarding-pen-option { display:flex; gap:10px; align-items:flex-start; border:1px solid #C8D9F3; border-radius:16px; padding:12px; background:rgba(255,255,255,0.96); cursor:pointer; box-shadow: 0 6px 22px rgba(44, 83, 141, 0.08); }
+        .onboarding-pen-option input { margin-top:2px; accent-color:#1D4ED8; }
+        .onboarding-pen-option-title { font-size:14px; font-weight:800; color:#1F2E4D; line-height:1.3; }
+        .onboarding-pen-option-sub { margin-top:3px; font-size:12px; color:#5B6F90; line-height:1.35; }
+
+        .regimen-card { background:linear-gradient(145deg,#F8FBFF 0%, #EFF5FF 100%); border:1px solid #DCE8FB; border-radius:18px; padding:15px; margin-bottom:10px; box-shadow:0 6px 18px rgba(29,78,216,.08); }
+        .status-card-head { display:flex; align-items:center; justify-content:space-between; padding:15px 15px 11px; }
+        .status-card-title { color:#1F355B; font-size:14px; font-weight:800; letter-spacing:-0.2px; }
+        .status-card-period { display:flex; align-items:center; gap:5px; margin-top:6px; color:#64748B; font-size:11px; }
+        .status-card-period strong { color:#526A8C; font-size:12px; font-weight:700; }
+        .current-status-card .graph-summary-block { padding:0 15px 14px !important; }
+        .current-status-card .graph-period-summary { margin:0 0 9px; }
+        .current-status-card .graph-period-range { margin-top:0; color:#64748B; font-size:10px; font-weight:600; }
+        .current-status-card .graph-summary-card { padding:9px 7px; background:rgba(255,255,255,.78); border-color:#DFE8F5; }
+        .current-status-card .graph-summary-label { margin-bottom:4px; font-size:10px; }
+        .current-status-card .graph-summary-value { font-size:14px; }
+        .current-status-card .regimen-card { padding:13px 15px 15px; }
+        .current-status-card .regimen-divider { margin:0 0 12px; background:#DCE8FB; }
+        .current-status-card .regimen-setting-label { font-size:10px; color:#64748B; letter-spacing:.1px; }
+        .current-status-card .regimen-main { margin-top:5px; font-size:16px; }
+        .current-status-card .regimen-sub { margin-top:7px; padding:7px 9px; background:rgba(255,255,255,.75); }        .current-status-card { background:linear-gradient(145deg,#F8FBFF 0%, #EFF5FF 100%); border:1px solid #DCE8FB; border-radius:18px; margin-bottom:10px; box-shadow:0 6px 18px rgba(29,78,216,.08); overflow:hidden; }
+        .current-status-card .graph-summary-block { margin:0 !important; border:0 !important; border-radius:0 !important; box-shadow:none !important; background:transparent !important; }
+        .current-status-card .regimen-card { margin:0; border:0; border-top:1px solid #DCE8FB; border-radius:0; box-shadow:none; background:transparent; }        .regimen-top { display:flex; justify-content:space-between; align-items:center; gap:8px; }
+        .regimen-title { font-size:13px; font-weight:800; color:#365A8B; letter-spacing:-0.1px; }
+        .regimen-period { display:flex; align-items:center; gap:6px; margin-top:10px; color:#365A8B; font-size:13px; }
+        .regimen-period strong { color:#1F2E4D; font-size:14px; }
+        .regimen-divider { height:1px; margin:12px 0 10px; background:#DCE8FB; }
+        .regimen-setting-label { color:#425B82; font-size:11px; font-weight:800; }
+        .regimen-edit-btn { border:1px solid #D6E4FA; background:#FFFFFF; color:#365A8B; font-size:11px; font-weight:700; border-radius:999px; padding:6px 10px; cursor:pointer; }
+        .regimen-edit-btn:hover { background:#EEF5FF; }
+        .regimen-actions { display:flex; gap:8px; margin-top:12px; }
+        .regimen-action-btn { flex:1; min-width:0; border:1px solid #D6E4FA; background:#FFFFFF; color:#365A8B; font-size:11px; font-weight:800; border-radius:10px; padding:8px 9px; cursor:pointer; transition:background .15s ease, border-color .15s ease, transform .15s ease; }
+        .regimen-action-btn:hover { background:#EEF5FF; border-color:#BFD4F4; transform:translateY(-1px); }
+        .regimen-action-btn.primary { border-color:#D6E4FA; background:#FFFFFF; color:#365A8B; }
+        .regimen-action-btn.primary:hover { background:#EEF5FF; border-color:#BFD4F4; }
+        .regimen-usage { display:flex; flex-direction:column; gap:7px; }
+        .regimen-usage-copy { display:flex; justify-content:space-between; align-items:center; gap:8px; }
+        .regimen-usage-label { color:#425B82; font-size:12px; font-weight:700; }
+        .regimen-usage-count { color:#425B82; font-size:11px; font-weight:600; }
+        .regimen-usage-count { display:flex; align-items:center; gap:5px; }
+        .regimen-usage-pill { display:inline-flex; align-items:center; padding:3px 7px; border:1px solid #DCE7F6; border-radius:999px; background:#FFFFFF; color:#526A8C; font-size:11px; font-weight:600; white-space:nowrap; }
+        .regimen-usage-pill.remain { border-color:#D9E6FA; background:#F5F8FF; color:#365A8B; }
+        .regimen-usage-bar { display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:5px; }
+        .regimen-usage-segment { height:7px; border-radius:999px; background:#DCE7F6; }
+        .regimen-usage-segment.is-used { background:#6E93D8; }
+        .regimen-action-btn.primary:hover { background:#E2EDFF; }
+        .regimen-main { margin-top:8px; font-size:17px; font-weight:900; color:#1D4ED8; letter-spacing:-0.2px; }
+        .regimen-sub { margin-top:7px; font-size:12px; color:#425B82; line-height:1.45; background:#FFFFFF; border:1px solid #E1EAF8; border-radius:10px; padding:7px 9px; }
+        .status-card-title { font-size:13px; font-weight:700; color:#526A8C; }
+        .status-card-period { margin-top:7px; }
+        .status-card-period strong { color:#1F355B; font-size:16px; font-weight:800; letter-spacing:-0.3px; }
+        .current-status-card .regimen-divider { display:none; }
+        .current-status-card .regimen-card { border-top:1px solid #DCE8FB; padding-top:13px; }
+        .current-status-card .regimen-setting-label { color:#526A8C; font-size:12px; font-weight:700; }                 .status-card-title { display:inline-flex; align-items:center; gap:8px; color:var(--toss-black); font-size:16px; font-weight:800; letter-spacing:-0.2px; }
+         .status-card-title::before { content:""; width:4px; height:16px; border-radius:4px; background:var(--toss-blue); }
+.graph-calendar-btn { border:1px solid #D6E4FA; background:#FFFFFF; color:#365A8B; font-size:11px; font-weight:700; border-radius:999px; padding:6px 10px; cursor:pointer; white-space:nowrap; }
+        .graph-calendar-btn:hover { background:#EEF5FF; border-color:#BFD4F4; }
+        .metric-more-inline { margin-top:8px; padding:10px; border:1px solid #E2ECFA; border-radius:12px; background:#F9FCFF; }
+        .metric-more-inline { margin-top:0; padding:0; overflow:visible; border:0; background:transparent; }
+        .metric-more-inline .metric-graph-card { margin:0 0 10px !important; padding:12px; border:1px solid #E2E8F0; border-radius:12px; box-shadow:none; background:#FFFFFF; } .metric-more-inline .metric-graph-card:last-child { margin-bottom:0 !important; }
+        .metric-more-inline .metric-graph-card + .metric-graph-card { border-top:1px solid #E2E8F0; }
+        .metric-more-inline .metric-graph-card:hover { border-color:transparent; box-shadow:none; }
+        .graph-header-toolbar { display:flex; justify-content:flex-end; margin-top:6px; margin-bottom:6px; }
     </style>
 </head>
 <body>
@@ -1171,16 +1265,26 @@
     </div>
     <div class="app-content">
         <div id="diaryTab" class="tab-panel active">
+<div class="current-status-card">
+<div class="status-card-head"><div><div class="status-card-period"><span aria-hidden="true">📅</span><strong id="graphPeriodDays">비만약 시작한 지 54일</strong></div></div></div>
 <div class="card graph-summary-block" style="background:#F8FBFF; border:1px solid #E3EDF9;"><div class="graph-period-summary" aria-label="인바디 변화 측정 기간">
-                    <div class="graph-period-days"><span aria-hidden="true">📅</span><span id="graphPeriodDays">비만약 시작한지 53일</span></div>
                     <div class="graph-period-range"><span id="graphPeriodRange">2026.06.08~2026.07.30</span><button type="button" class="graph-period-edit" onclick="openGraphPeriodModal()" aria-label="측정 기간 수정">✏️</button></div>
-                </div>                <div class="graph-summary-row" aria-label="주요 변화 요약">
+                </div><div class="graph-summary-row" aria-label="주요 변화 요약">
                     <div class="graph-summary-card"><span class="graph-summary-label">체중</span><strong class="graph-summary-value">-2.4kg</strong></div>
                     <div class="graph-summary-card"><span class="graph-summary-label">체지방</span><strong class="graph-summary-value good">-4.3kg</strong></div>
                     <div class="graph-summary-card"><span class="graph-summary-label">근육량</span><strong class="graph-summary-value good">+1.3kg</strong></div>
-                </div>            </div>
-            <div class="card graph-chart-block" style="background:#F8FBFF; border:1px solid #E3EDF9;">
-                <div class="card-title" style="margin-bottom:10px;"><span class="section-title" style="white-space:nowrap;">투약 기록과 함께 보는 인바디 변화</span></div>
+                </div></div>
+<div class="regimen-card" id="currentRegimenCard">
+    <div class="regimen-divider" aria-hidden="true"></div>
+    <div class="regimen-main" id="currentRegimenMain">마운자로(Mounjaro) · 0.25mg</div>
+    <div class="regimen-sub" id="currentRegimenSub">새 펜으로 시작했어요.</div>
+    <div class="regimen-actions" aria-label="투약 설정 및 기록 관리">
+        <button type="button" class="regimen-action-btn" onclick="openOnboardingEdit()">정보 바꾸기</button>
+        <button type="button" class="regimen-action-btn primary" onclick="openModal()">오늘 투약 기록하기</button>
+    </div>
+</div></div>
+<div class="card graph-chart-block" style="background:#F8FBFF; border:1px solid #E3EDF9;">
+                <div class="card-title" style="margin-bottom:4px;"><span class="section-title" style="white-space:nowrap;">투약 기록과 함께 보는 인바디 변화</span></div><div class="graph-header-toolbar"><button type="button" class="graph-calendar-btn" onclick="openInjectionCalendarModal()">📅 투약 기록 달력 보기</button></div>
                 <div class="metric-graph-tabs" role="tablist" aria-label="인바디 변화 지표 선택">
                     <button type="button" class="metric-graph-tab active" data-metric-tab="weight" aria-selected="true" onclick="selectMetricGraph('weight')">체중</button>
                     <button type="button" class="metric-graph-tab" data-metric-tab="fat" aria-selected="false" onclick="selectMetricGraph('fat')">체지방률</button>
@@ -1189,32 +1293,48 @@
                 </div>
                 <div class="metric-graph-list">
                     <div class="metric-graph-card active" data-metric-graph="weight">
-                        <div class="metric-graph-head"><button type="button" class="metric-graph-info" onclick="openMetricInfo('weight')" aria-label="체중 설명">i</button></div>
+                        <div class="metric-graph-head"><div class="name">체중</div><button type="button" class="metric-graph-info" onclick="openMetricInfo('weight')" aria-label="체중 설명">i</button></div>
                         <div class="dose-marker-track" data-dose-marker-track aria-label="체중 그래프 투약 기록" data-metric="weight"></div>
                         <svg class="metric-graph-svg" viewBox="0 0 480 170" preserveAspectRatio="xMidYMid meet" aria-label="체중 변화 그래프"><defs><linearGradient id="weightFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#30496F" stop-opacity=".20"/><stop offset="1" stop-color="#30496F" stop-opacity="0"/></linearGradient></defs><g class="chart-grid"><line x1="38" y1="18" x2="468" y2="18"/><line x1="38" y1="50" x2="468" y2="50"/><line x1="38" y1="82" x2="468" y2="82"/><line x1="38" y1="114" x2="468" y2="114"/><line x1="38" y1="146" x2="468" y2="146"/></g><g class="chart-y-labels"><text x="4" y="22">73kg</text><text x="4" y="86">71kg</text><text x="4" y="150">69kg</text></g><path d="M38 28 C92 32 114 37 146 48 S220 59 254 70 S324 91 360 103 S424 119 468 132 L468 146 L38 146 Z" fill="url(#weightFill)"/><path d="M38 28 C92 32 114 37 146 48 S220 59 254 70 S324 91 360 103 S424 119 468 132" fill="none" stroke="#30496F" stroke-width="3.5" stroke-linecap="round"/><g class="chart-points"><circle cx="38" cy="28" r="4"/><circle cx="146" cy="48" r="4"/><circle cx="254" cy="70" r="4"/><circle cx="360" cy="103" r="4"/><circle cx="468" cy="132" r="4"/><text class="chart-injection-emoji" x="38" y="13" tabindex="0" aria-label="6월 11일 투약 기록"><title>투약일 2026.06.11 · 약 종류 마운자로 · 투약량 0.5mg · 측정일 2026.06.12 · 체중 71.2kg</title>💉</text><text class="chart-injection-emoji" x="254" y="55" tabindex="0" aria-label="6월 25일 투약 기록"><title>투약일 2026.06.25 · 약 종류 마운자로 · 투약량 0.5mg · 측정일 2026.06.26 · 체중 70.4kg</title>💉</text><text class="chart-injection-emoji" x="468" y="117" tabindex="0" aria-label="7월 16일 투약 기록"><title>투약일 2026.07.16 · 약 종류 마운자로 · 투약량 0.5mg · 측정일 2026.07.17 · 체중 69.3kg</title>💉</text></g></svg>
+                        <div class="metric-more-axis metric-main-axis" data-main-axis="graph"><span>06.08</span><span>06.21</span><span>07.04</span><span>07.17</span><span>07.30</span></div>
                     </div>
                     <div class="metric-graph-card" data-metric-graph="fat">
-                        <div class="metric-graph-head"><button type="button" class="metric-graph-info" onclick="openMetricInfo('fat')" aria-label="체지방률 설명">i</button></div>
+                        <div class="metric-graph-head"><div class="name">체지방률</div><button type="button" class="metric-graph-info" onclick="openMetricInfo('fat')" aria-label="체지방률 설명">i</button></div>
                         <div class="dose-marker-track" data-dose-marker-track aria-label="체지방률 그래프 투약 기록" data-metric="fat"></div>
                         <svg class="metric-graph-svg" viewBox="0 0 480 170" preserveAspectRatio="xMidYMid meet" aria-label="체지방률 변화 그래프"><defs><linearGradient id="fatFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EF4444" stop-opacity=".18"/><stop offset="1" stop-color="#EF4444" stop-opacity="0"/></linearGradient></defs><g class="chart-grid"><line x1="38" y1="18" x2="468" y2="18"/><line x1="38" y1="50" x2="468" y2="50"/><line x1="38" y1="82" x2="468" y2="82"/><line x1="38" y1="114" x2="468" y2="114"/><line x1="38" y1="146" x2="468" y2="146"/></g><g class="chart-y-labels"><text x="4" y="22">32%</text><text x="4" y="86">29%</text><text x="4" y="150">26%</text></g><path d="M38 24 C88 31 116 41 146 48 S220 66 254 79 S322 98 360 111 S424 126 468 138 L468 146 L38 146 Z" fill="url(#fatFill)"/><path d="M38 24 C88 31 116 41 146 48 S220 66 254 79 S322 98 360 111 S424 126 468 138" fill="none" stroke="#EF4444" stroke-width="3.5" stroke-linecap="round"/><g class="chart-points fat"><circle cx="38" cy="24" r="4"/><circle cx="146" cy="48" r="4"/><circle cx="254" cy="79" r="4"/><circle cx="360" cy="111" r="4"/><circle cx="468" cy="138" r="4"/><text class="chart-injection-emoji" x="38" y="9" tabindex="0" aria-label="6월 11일 투약 기록"><title>투약일 2026.06.11 · 약 종류 마운자로 · 투약량 0.5mg · 측정일 2026.06.12 · 체지방률 30.4%</title>💉</text><text class="chart-injection-emoji" x="254" y="64" tabindex="0" aria-label="6월 25일 투약 기록"><title>투약일 2026.06.25 · 약 종류 마운자로 · 투약량 0.5mg · 측정일 2026.06.26 · 체지방률 29.1%</title>💉</text><text class="chart-injection-emoji" x="468" y="123" tabindex="0" aria-label="7월 16일 투약 기록"><title>투약일 2026.07.16 · 약 종류 마운자로 · 투약량 0.5mg · 측정일 2026.07.17 · 체지방률 26.7%</title>💉</text></g></svg>
+                        <div class="metric-more-axis metric-main-axis" data-main-axis="graph"><span>06.08</span><span>06.21</span><span>07.04</span><span>07.17</span><span>07.30</span></div>
                     </div>
                     <div class="metric-graph-card" data-metric-graph="muscle">
-                        <div class="metric-graph-head"><button type="button" class="metric-graph-info" onclick="openMetricInfo('muscle')" aria-label="골격근량 설명">i</button></div>
+                        <div class="metric-graph-head"><div class="name">골격근량</div><button type="button" class="metric-graph-info" onclick="openMetricInfo('muscle')" aria-label="골격근량 설명">i</button></div>
                         <div class="dose-marker-track" data-dose-marker-track aria-label="골격근량 그래프 투약 기록" data-metric="muscle"></div>
                         <svg class="metric-graph-svg" viewBox="0 0 480 170" preserveAspectRatio="xMidYMid meet" aria-label="골격근량 변화 그래프"><defs><linearGradient id="muscleFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#43C2A4" stop-opacity=".22"/><stop offset="1" stop-color="#43C2A4" stop-opacity="0"/></linearGradient></defs><g class="chart-grid"><line x1="38" y1="18" x2="468" y2="18"/><line x1="38" y1="50" x2="468" y2="50"/><line x1="38" y1="82" x2="468" y2="82"/><line x1="38" y1="114" x2="468" y2="114"/><line x1="38" y1="146" x2="468" y2="146"/></g><g class="chart-y-labels"><text x="4" y="22">25.5kg</text><text x="4" y="86">24.5kg</text><text x="4" y="150">23.5kg</text></g><path d="M38 132 C90 128 115 123 146 117 S220 108 254 97 S324 82 360 70 S424 55 468 42 L468 146 L38 146 Z" fill="url(#muscleFill)"/><path d="M38 132 C90 128 115 123 146 117 S220 108 254 97 S324 82 360 70 S424 55 468 42" fill="none" stroke="#43C2A4" stroke-width="3.5" stroke-linecap="round"/><g class="chart-points muscle"><circle cx="38" cy="132" r="4"/><circle cx="146" cy="117" r="4"/><circle cx="254" cy="97" r="4"/><circle cx="360" cy="70" r="4"/><circle cx="468" cy="42" r="4"/><text class="chart-injection-emoji" x="38" y="117" tabindex="0" aria-label="6월 11일 투약 기록"><title>투약일 2026.06.11 · 약 종류 마운자로 · 투약량 0.5mg · 측정일 2026.06.12 · 골격근량 24.1kg</title>💉</text><text class="chart-injection-emoji" x="254" y="82" tabindex="0" aria-label="6월 25일 투약 기록"><title>투약일 2026.06.25 · 약 종류 마운자로 · 투약량 0.5mg · 측정일 2026.06.26 · 골격근량 24.5kg</title>💉</text><text class="chart-injection-emoji" x="468" y="27" tabindex="0" aria-label="7월 16일 투약 기록"><title>투약일 2026.07.16 · 약 종류 마운자로 · 투약량 0.5mg · 측정일 2026.07.17 · 골격근량 25.2kg</title>💉</text></g></svg>
+                        <div class="metric-more-axis metric-main-axis" data-main-axis="graph"><span>06.08</span><span>06.21</span><span>07.04</span><span>07.17</span><span>07.30</span></div>
                     </div>
                     <div class="metric-graph-card" data-metric-graph="pha">
-                        <div class="metric-graph-head"><button type="button" class="metric-graph-info" onclick="openMetricInfo('pha')" aria-label="위상각 설명">i</button></div>
+                        <div class="metric-graph-head"><div class="name">위상각</div><button type="button" class="metric-graph-info" onclick="openMetricInfo('pha')" aria-label="위상각 설명">i</button></div>
                         <div class="dose-marker-track" data-dose-marker-track aria-label="위상각 그래프 투약 기록" data-metric="pha"></div>
-                        <svg class="metric-graph-svg" viewBox="0 0 480 170" preserveAspectRatio="xMidYMid meet" aria-label="위상각 변화 그래프"><defs><linearGradient id="phaFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0F766E" stop-opacity=".18"/><stop offset="1" stop-color="#0F766E" stop-opacity="0"/></linearGradient></defs><g class="chart-grid"><line x1="38" y1="18" x2="468" y2="18"/><line x1="38" y1="50" x2="468" y2="50"/><line x1="38" y1="82" x2="468" y2="82"/><line x1="38" y1="114" x2="468" y2="114"/><line x1="38" y1="146" x2="468" y2="146"/></g><g class="chart-y-labels"><text x="4" y="22">5.4°</text><text x="4" y="86">4.9°</text><text x="4" y="150">4.4°</text></g><path d="M38 126 C90 122 115 117 146 112 S220 102 254 94 S324 79 360 69 S424 57 468 46 L468 146 L38 146 Z" fill="url(#phaFill)"/><path d="M38 126 C90 122 115 117 146 112 S220 102 254 94 S324 79 360 69 S424 57 468 46" fill="none" stroke="#0F766E" stroke-width="3.5" stroke-linecap="round"/><g class="chart-points pha"><circle cx="38" cy="126" r="4"/><circle cx="146" cy="112" r="4"/><circle cx="254" cy="94" r="4"/><circle cx="360" cy="69" r="4"/><circle cx="468" cy="46" r="4"/><text class="chart-injection-emoji" x="38" y="111" tabindex="0" aria-label="6월 11일 투약 기록"><title>투약일 2026.06.11 · 약 종류 마운자로 · 투약량 0.5mg · 측정일 2026.06.12 · 위상각 4.8°</title>💉</text><text class="chart-injection-emoji" x="254" y="79" tabindex="0" aria-label="6월 25일 투약 기록"><title>투약일 2026.06.25 · 약 종류 마운자로 · 투약량 0.5mg · 측정일 2026.06.26 · 위상각 5.0°</title>💉</text><text class="chart-injection-emoji" x="468" y="31" tabindex="0" aria-label="7월 16일 투약 기록"><title>투약일 2026.07.16 · 약 종류 마운자로 · 투약량 0.5mg · 측정일 2026.07.17 · 위상각 5.2°</title>💉</text></g></svg>
+                        <svg class="metric-graph-svg" viewBox="0 0 480 170" preserveAspectRatio="xMidYMid meet" aria-label="위상각 변화 그래프"><defs><linearGradient id="phaFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0F766E" stop-opacity=".18"/><stop offset="1" stop-color="#0F766E" stop-opacity="0"/></linearGradient></defs><g class="chart-grid"><line x1="38" y1="18" x2="468" y2="18"/><line x1="38" y1="50" x2="468" y2="50"/><line x1="38" y1="82" x2="468" y2="82"/><line x1="38" y1="114" x2="468" y2="114"/><line x1="38" y1="146" x2="468" y2="146"/></g><g class="chart-y-labels"><text x="4" y="22">5.4°</text><text x="4" y="86">4.9°</text><text x="4" y="150">4.4°</text></g><path d="M38 126 C90 122 115 117 146 112 S220 102 254 94 S324 79 360 69 S424 57 468 46 L468 146 L38 146 Z" fill="url(#phaFill)"/><path d="M38 126 C90 122 115 117 146 112 S220 102 254 94 S324 79 360 69 S424 57 468 46" fill="none" stroke="#0F766E" stroke-width="3.5" stroke-linecap="round"/><g class="chart-points pha"><circle cx="38" cy="126" r="4"/><circle cx="146" cy="112" r="4"/><circle cx="360" cy="69" r="4"/><circle cx="468" cy="46" r="4"/><text class="chart-injection-emoji" x="38" y="111" tabindex="0" aria-label="6월 11일 투약 기록"><title>투약일 2026.06.11 · 약 종류 마운자로 · 투약량 0.5mg · 측정일 2026.06.12 · 위상각 4.8°</title>💉</text><text class="chart-injection-emoji" x="254" y="79" tabindex="0" aria-label="6월 25일 투약 기록"><title>투약일 2026.06.25 · 약 종류 마운자로 · 투약량 0.5mg · 측정일 2026.06.26 · 위상각 5.0°</title>💉</text><text class="chart-injection-emoji" x="468" y="31" tabindex="0" aria-label="7월 16일 투약 기록"><title>투약일 2026.07.16 · 약 종류 마운자로 · 투약량 0.5mg · 측정일 2026.07.17 · 위상각 5.2°</title>💉</text></g></svg>
                     </div>
                 </div>
-                <div class="graph-axis-x" id="graphLabels"><span>2026.06</span><span>2026.06</span><span>2026.07</span><span>2026.07</span><span>2026.07</span></div>
-                    </div>
-
-            <button class="add-record-btn" style="margin-top:14px; margin-bottom:0;" onclick="openModal()">오늘 투약 기록하기</button>
+                
+                <div class="metric-more-btn-wrap"><button type="button" class="metric-more-btn" id="metricMoreToggleBtn" aria-expanded="false" onclick="toggleMetricMoreInline()"><span>심화 지표</span><span class="metric-more-chevron" aria-hidden="true"></span></button></div>
+                        <div id="metricMoreInline" class="metric-more-inline" style="display:none;">
+                <div class="metric-graph-card" style="display:block; margin-bottom:10px;">
+                    <div class="metric-graph-head"><div class="name">위상각</div><button type="button" class="metric-graph-info" onclick="openMetricInfo('pha')" aria-label="위상각 설명">i</button></div>
+                    <svg class="metric-graph-svg" viewBox="0 0 480 170" preserveAspectRatio="xMidYMid meet" aria-label="위상각 변화 그래프"><defs><linearGradient id="phaFillInline" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0F766E" stop-opacity=".18"/><stop offset="1" stop-color="#0F766E" stop-opacity="0"/></linearGradient></defs><g class="chart-grid"><line x1="38" y1="18" x2="468" y2="18"/><line x1="38" y1="50" x2="468" y2="50"/><line x1="38" y1="82" x2="468" y2="82"/><line x1="38" y1="114" x2="468" y2="114"/><line x1="38" y1="146" x2="468" y2="146"/></g><g class="chart-y-labels"><text x="4" y="22">5.4°</text><text x="4" y="86">5.0°</text><text x="4" y="150">4.6°</text></g><path d="M38 126 C90 122 115 117 146 112 S220 102 254 94 S324 79 360 69 S424 57 468 46 L468 146 L38 146 Z" fill="url(#phaFillInline)"/><path d="M38 126 C90 122 115 117 146 112 S220 102 254 94 S324 79 360 69 S424 57 468 46" fill="none" stroke="#0F766E" stroke-width="3.5" stroke-linecap="round"/><g class="chart-points pha"><circle cx="38" cy="126" r="4"/><circle cx="468" cy="46" r="4"/><text class="chart-injection-emoji" x="38" y="111" tabindex="0" aria-label="6월 11일 투약 기록"><title>투약일 2026.06.11 · 약 종류 마운자로 · 투약량 0.5mg · 측정일 2026.06.12 · 위상각 4.8°</title>💉</text><text class="chart-injection-emoji" x="254" y="79" tabindex="0" aria-label="6월 25일 투약 기록"><title>투약일 2026.06.25 · 약 종류 마운자로 · 투약량 0.5mg · 측정일 2026.06.26 · 위상각 5.0°</title>💉</text><text class="chart-injection-emoji" x="468" y="31" tabindex="0" aria-label="7월 16일 투약 기록"><title>투약일 2026.07.16 · 약 종류 마운자로 · 투약량 0.5mg · 측정일 2026.07.17 · 위상각 5.2°</title>💉</text></g></svg>
+                    <div class="metric-more-axis" data-more-axis="pha"><span>06.08</span><span>06.21</span><span>07.04</span><span>07.17</span><span>07.30</span></div>
+                </div>
+                <div class="metric-graph-card" style="display:block;">
+                    <div class="metric-graph-head"><div class="name">세포외수분비</div><button type="button" class="metric-graph-info" onclick="openMetricInfo('ecw')" aria-label="세포외수분비 설명">i</button></div>
+                    <svg class="metric-graph-svg" viewBox="0 0 480 170" preserveAspectRatio="xMidYMid meet" aria-label="세포외수분비 변화 그래프"><defs><linearGradient id="ecwFillInline" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2563EB" stop-opacity=".18"/><stop offset="1" stop-color="#2563EB" stop-opacity="0"/></linearGradient></defs><g class="chart-grid"><line x1="38" y1="18" x2="468" y2="18"/><line x1="38" y1="50" x2="468" y2="50"/><line x1="38" y1="82" x2="468" y2="82"/><line x1="38" y1="114" x2="468" y2="114"/><line x1="38" y1="146" x2="468" y2="146"/></g><g class="chart-y-labels"><text x="4" y="22">0.390</text><text x="4" y="86">0.380</text><text x="4" y="150">0.370</text></g><path d="M38 84 C92 82 126 80 146 78 S222 76 254 74 S324 73 360 72 S424 71 468 70 L468 146 L38 146 Z" fill="url(#ecwFillInline)"/><path d="M38 84 C92 82 126 80 146 78 S222 76 254 74 S324 73 360 72 S424 71 468 70" fill="none" stroke="#2563EB" stroke-width="3.5" stroke-linecap="round"/><g class="chart-points ecw"><circle cx="38" cy="84" r="4"/><circle cx="254" cy="74" r="4"/><circle cx="468" cy="70" r="4"/><text class="chart-injection-emoji" x="38" y="69" tabindex="0" aria-label="6월 11일 투약 기록"><title>투약일 2026.06.11 · 약 종류 마운자로 · 투약량 0.5mg · 측정일 2026.06.12 · 세포외수분비 0.384</title>💉</text><text class="chart-injection-emoji" x="254" y="59" tabindex="0" aria-label="6월 25일 투약 기록"><title>투약일 2026.06.25 · 약 종류 마운자로 · 투약량 0.5mg · 측정일 2026.06.26 · 세포외수분비 0.379</title>💉</text><text class="chart-injection-emoji" x="468" y="55" tabindex="0" aria-label="7월 16일 투약 기록"><title>투약일 2026.07.16 · 약 종류 마운자로 · 투약량 0.5mg · 측정일 2026.07.17 · 세포외수분비 0.376</title>💉</text></g></svg>
+                    <div class="metric-more-axis" data-more-axis="ecw"><span>06.08</span><span>06.21</span><span>07.04</span><span>07.17</span><span>07.30</span></div>
+                </div>
+            </div>
+            <div id="recordInlineHost"></div>
 
                             </div>
+
+                        </div>
 
         <div id="analysisTab" class="tab-panel">
             <div class="ie-score-card">
@@ -1343,6 +1463,9 @@
                     <a class="quick-link-btn" href="https://cafe.naver.com/" target="_blank" rel="noopener">🌐 네이버 카페 메인</a>
                 </div>
             </div>
+            <div class="analysis-onboarding-reopen">
+                <button type="button" class="analysis-onboarding-reopen-btn" onclick="initOnboardingFlow(true)">온보딩 다시 보기</button>
+            </div>
         </div>
 
 </div>
@@ -1403,10 +1526,6 @@
 <div class="modal-overlay" id="recordModal">
     <div class="modal-window">
         <div style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: var(--toss-black);">오늘 투약 기록하기</div>
-        <button type="button" onclick="openRecordPointGuide()" style="width:100%; border:1px solid #D9E8FF; background:#EEF4FF; color:#1D4ED8; border-radius:12px; padding:10px 12px; margin-bottom:10px; font-size:12px; font-weight:800; text-align:left; cursor:pointer;">
-            🎁 투약 기록하고 최대 350p 받기
-        </button>
-        <div style="font-size:12px; color:#4B5563; margin:0 0 10px 2px;">필수 항목을 입력하고 선택 입력까지 완료하면 더 많은 포인트를 받을 수 있어요.</div>
         <div class="form-group">
             <label>투약 날짜<span class="required-mark" style="color:var(--apple-red); margin-left:2px;">*</span></label>
             <input type="date" class="form-control" id="inputRecordDate">
@@ -1433,10 +1552,12 @@
                 <option value="7.5">7.5 mg</option>
                 <option value="10">10 mg</option>
             </select>
-        </div>        <div class="optional-diary-section" style="margin-top:12px;">
-            <button type="button" class="optional-diary-toggle" id="optionalDiaryToggle" onclick="toggleOptionalDiarySection()"><span>비만약 일기</span><span id="optionalDiaryChevron">⌄</span></button>
+        </div>
+        <div class="optional-diary-section" style="margin-top:12px;">
+            <button type="button" class="optional-diary-toggle" id="optionalDiaryToggle" onclick="toggleOptionalDiarySection()"><span class="optional-diary-label">비만약 일기</span><span class="optional-diary-point-note">최대 +150p</span><span id="optionalDiaryChevron">⌄</span></button>
             <div id="optionalDiaryBody" style="display:none; margin-top:10px;">
-            <div style="font-size:11px; color:#64748B; margin-bottom:6px;">선택 입력을 완료하면 추가 포인트를 받을 수 있어요.</div>
+            <div style="font-size:11px; color:#64748B; margin-bottom:6px;">선택 입력을 완료하면 추가 포인트를 받을 수 있어요.
+            <span style="display:block; margin-top:4px; color:#1D4ED8; font-weight:700;">부작용 +50p · 식단(5자+) +50p · 운동(5자+) +50p (최대 +150p)</span></div>
             <div style="font-size:12px; font-weight:800; color:#334155; margin:8px 0 6px;">부작용</div>
             <div class="tag-pool" id="sideEffectTagPool">
                 <button type="button" class="tag-item" onclick="selectSideEffect(this)">🤢 메스꺼움</button>
@@ -1450,7 +1571,17 @@
                 <button type="button" class="tag-item" onclick="toggleCustomSideEffect(this)">✏️ 직접 입력</button>
             </div>
             <input id="customSideInput" class="form-control" style="display:none; margin-bottom:10px;" placeholder="부작용을 직접 입력해주세요" oninput="updateSideEffectPointHint()">
-            <div class="text-bonus-hint pending" id="sideEffectPointHint">부작용 여부를 선택하면 +50p</div>
+                        <div class="text-bonus-hint pending" id="sideEffectPointHint">부작용 여부를 선택하면 +50p</div>
+            <div class="injection-site-title">주사 부위 <span style="font-size:10px; color:#94A3B8; font-weight:600;">선택 입력</span></div>
+            <div class="injection-site-pool" id="injectionSitePool" role="group" aria-label="주사 부위 선택">
+                <button type="button" class="injection-site-item" data-site="선택 안 함" onclick="selectInjectionSite(this)">선택 안 함</button>
+                <button type="button" class="injection-site-item" data-site="복부 - 왼쪽" onclick="selectInjectionSite(this)">복부 왼쪽</button>
+                <button type="button" class="injection-site-item" data-site="복부 - 오른쪽" onclick="selectInjectionSite(this)">복부 오른쪽</button>
+                <button type="button" class="injection-site-item" data-site="허벅지 - 왼쪽" onclick="selectInjectionSite(this)">허벅지 왼쪽</button>
+                <button type="button" class="injection-site-item" data-site="허벅지 - 오른쪽" onclick="selectInjectionSite(this)">허벅지 오른쪽</button>
+                <button type="button" class="injection-site-item" data-site="팔 - 왼팔" onclick="selectInjectionSite(this)">팔 왼쪽</button>
+                <button type="button" class="injection-site-item" data-site="팔 - 오른팔" onclick="selectInjectionSite(this)">팔 오른쪽</button>
+            </div>
             <div style="font-size:12px; font-weight:800; color:#334155; margin:8px 0 6px;">식단 기록</div>
             <input id="inputDiet" class="form-control" placeholder="오늘 식단을 간단히 기록해주세요" oninput="updateTextBonusHintFor('inputDiet','dietHint')">
             <div class="text-bonus-hint pending" id="dietHint">0/5자 · 5자 이상 입력하면 +50p</div>
@@ -1466,6 +1597,35 @@
             <button class="add-record-btn" onclick="saveRecord()">오늘 기록 완료</button>
 
         </div>
+    </div>
+</div>
+
+<div class="modal-overlay" id="injectionCalendarModal" style="align-items:center; padding:0 20px; display:none;">
+    <div class="modal-window" style="border-radius:22px; align-self:center;">
+        <div class="calendar-header">
+            <button class="calendar-nav-btn" onclick="changeInjectionCalendarMonth(-1)">‹</button>
+            <div class="calendar-month" id="calendarMonthLabel">2026년 6월</div>
+            <button class="calendar-nav-btn" onclick="changeInjectionCalendarMonth(1)">›</button>
+        </div>
+        <div class="calendar-weekdays"><span>일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span></div>
+        <div class="calendar-grid" id="injectionCalendarGrid"></div>
+        <div class="calendar-detail" id="injectionCalendarDetail">날짜를 선택하면 투약 기록이 표시돼요.</div>
+        <button class="add-record-btn" style="margin-top:12px; margin-bottom:0;" onclick="closeInjectionCalendarModal()">닫기</button>
+    </div>
+</div>
+
+<div class="modal-overlay" id="metricMoreModal" style="align-items:center; padding:0 20px; display:none;">
+    <div class="modal-window" style="border-radius:22px; align-self:center;">
+        <div style="font-size:17px; font-weight:800; color:var(--toss-black); margin-bottom:10px;">추가 지표 그래프</div>
+        <div class="metric-graph-card" style="display:block; margin-bottom:10px;">
+            <div class="metric-graph-head"><div class="name">위상각</div><button type="button" class="metric-graph-info" onclick="openMetricInfo('pha')" aria-label="위상각 설명">i</button></div>
+            <svg class="metric-graph-svg" viewBox="0 0 480 170" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="phaFillMore" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0F766E" stop-opacity=".18"/><stop offset="1" stop-color="#0F766E" stop-opacity="0"/></linearGradient></defs><g class="chart-grid"><line x1="38" y1="18" x2="468" y2="18"/><line x1="38" y1="50" x2="468" y2="50"/><line x1="38" y1="82" x2="468" y2="82"/><line x1="38" y1="114" x2="468" y2="114"/><line x1="38" y1="146" x2="468" y2="146"/></g><path d="M38 126 C90 122 115 117 146 112 S220 102 254 94 S324 79 360 69 S424 57 468 46 L468 146 L38 146 Z" fill="url(#phaFillMore)"/><path d="M38 126 C90 122 115 117 146 112 S220 102 254 94 S324 79 360 69 S424 57 468 46" fill="none" stroke="#0F766E" stroke-width="3.5" stroke-linecap="round"/></svg>
+        </div>
+        <div class="metric-graph-card" style="display:block;">
+            <div class="metric-graph-head"><div class="name">세포외수분비</div><button type="button" class="metric-graph-info" onclick="openMetricInfo('ecw')" aria-label="세포외수분비 설명">i</button></div>
+            <svg class="metric-graph-svg" viewBox="0 0 480 170" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="ecwFillMore" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2563EB" stop-opacity=".18"/><stop offset="1" stop-color="#2563EB" stop-opacity="0"/></linearGradient></defs><g class="chart-grid"><line x1="38" y1="18" x2="468" y2="18"/><line x1="38" y1="50" x2="468" y2="50"/><line x1="38" y1="82" x2="468" y2="82"/><line x1="38" y1="114" x2="468" y2="114"/><line x1="38" y1="146" x2="468" y2="146"/></g><path d="M38 84 C92 82 126 80 146 78 S222 76 254 74 S324 73 360 72 S424 71 468 70 L468 146 L38 146 Z" fill="url(#ecwFillMore)"/><path d="M38 84 C92 82 126 80 146 78 S222 76 254 74 S324 73 360 72 S424 71 468 70" fill="none" stroke="#2563EB" stroke-width="3.5" stroke-linecap="round"/></svg>
+        </div>
+        <button class="add-record-btn" style="margin-top:12px; margin-bottom:0;" onclick="closeMetricMoreModal()">닫기</button>
     </div>
 </div>
 
@@ -1732,6 +1892,18 @@
 </div>
 
 
+<div class="modal-overlay" id="changeRegimenConfirmModal" style="align-items: center; padding: 0 20px; display:none;">
+    <div class="modal-window" style="border-radius:22px; align-self:center; box-shadow: 0 12px 40px rgba(0,0,0,0.15);">
+        <div style="font-size:17px; font-weight:800; color:var(--toss-black); margin-bottom:8px;">투약 설정을 새로 등록할까요?</div>
+        <div id="changeRegimenConfirmMsg" style="font-size:12px; color:var(--toss-grey); line-height:1.65; background:#F8FAFC; padding:12px; border-radius:12px;">
+            현재 투약 정보 기준으로 기록이 이어지고 있어요. 새 설정으로 바꾸면 이후 기록은 새 주사제 기준으로 저장됩니다.
+        </div>
+        <div style="display:flex; gap:10px; margin-top:14px;">
+            <button class="add-record-btn" style="background:var(--toss-light-grey); color:var(--toss-black); margin:0;" onclick="closeChangeRegimenConfirm()">취소</button>
+            <button class="add-record-btn" style="margin:0;" onclick="confirmOpenOnboardingEdit()">변경하기</button>
+        </div>
+    </div>
+</div>
 <div class="onboarding-overlay" id="onboardingOverlay">
     <div class="onboarding-bg" aria-hidden="true">
         <span class="onboarding-cloud c1"></span>
@@ -1777,6 +1949,33 @@
         </div>
 
         <div class="onboarding-step" data-step="3">
+            <div class="onboarding-title" id="onboardingPenTitle">현재 펜 상태를 알려주세요.</div>
+            <div class="onboarding-sub" id="onboardingPenSub">사용 중인 펜인지, 새 펜인지 선택해 주세요.</div>
+            <div class="onboarding-pen-options">
+                <label class="onboarding-pen-option">
+                    <input type="radio" name="onboardingPenState" id="onboardingPenStateNew" value="new" checked>
+                    <div>
+                        <div class="onboarding-pen-option-title">새 펜을 막 시작해요</div>
+                        <div class="onboarding-pen-option-sub">이번 펜은 아직 사용 전이에요.</div>
+                    </div>
+                </label>
+                <label class="onboarding-pen-option">
+                    <input type="radio" name="onboardingPenState" id="onboardingPenStateUsed" value="used">
+                    <div>
+                        <div class="onboarding-pen-option-title">이미 사용 중인 펜이에요</div>
+                        <div class="onboarding-pen-option-sub">지금까지 사용한 회차를 이어서 관리해요.</div>
+                    </div>
+                </label>
+            </div>
+            <select id="onboardingPenUseCount" class="onboarding-select" style="display:none; margin-top:10px;">
+                <option value="">현재 펜 사용 회차를 선택해 주세요</option>
+                <option value="1">1회 사용</option>
+                <option value="2">2회 사용</option>
+                <option value="3">3회 사용</option>
+            </select>
+        </div>
+
+        <div class="onboarding-step" data-step="4">
             <div class="onboarding-title">비만약 시작일을 선택해 주세요.</div>
             <div class="onboarding-sub">그래프 기간은 시작일~오늘 기준으로 보여드려요.</div>
             <input id="onboardingStartDate" class="onboarding-select" type="date" value="2026-06-08">
@@ -1803,6 +2002,7 @@
     const TABLE_COLLAPSE_COUNT = 5;
     const LAST_INJECTION_KEY = 'lastInjectionSelection';
     const LAST_SIDE_EFFECT_PAYLOAD_KEY = 'lastSideEffectPayload';
+    const PEN_TOTAL_USES = 4;
     let feedExpanded = false;
     let tableExpanded = false;
     let shareGraphDataUrl = '';
@@ -2098,7 +2298,7 @@
         if(tabName === 'diary') {
             if (diaryTab) diaryTab.classList.add('active');
             if (navDiary) navDiary.classList.add('active');
-            if (typeof initOnboardingFlow === 'function') initOnboardingFlow(true);
+
         } else if(tabName === 'analysis') {
             if (analysisTab) analysisTab.classList.add('active');
             if (navAnalysis) navAnalysis.classList.add('active');
@@ -2165,6 +2365,32 @@
         selectedInjectionDate = '';
         renderInjectionCalendar();
     }
+    function openInjectionCalendarModal() {
+        const modal = document.getElementById("injectionCalendarModal");
+        if (!modal) return;
+        modal.style.display = "flex";
+        renderInjectionCalendar();
+    }
+    function closeInjectionCalendarModal() {
+        const modal = document.getElementById("injectionCalendarModal");
+        if (modal) modal.style.display = "none";
+    }
+    function toggleMetricMoreInline() {
+        const wrap = document.getElementById("metricMoreInline");
+        const btn = document.getElementById("metricMoreToggleBtn");
+        if (!wrap) return;
+        const opening = wrap.style.display === "none" || wrap.style.display === "";
+        wrap.style.display = opening ? "block" : "none";
+        if (btn) btn.setAttribute("aria-expanded", opening ? "true" : "false");
+    }
+    function openMetricMoreModal() { toggleMetricMoreInline(); }
+    function closeMetricMoreModal() {
+        const wrap = document.getElementById("metricMoreInline");
+        const btn = document.getElementById("metricMoreToggleBtn");
+        if (wrap) wrap.style.display = "none";
+        if (btn) btn.setAttribute("aria-expanded", "false");
+    }
+
     function toggleViewMode(mode) {
         ['feed', 'table', 'calendar'].forEach((view) => {
             document.getElementById(`btn${view.charAt(0).toUpperCase() + view.slice(1)}View`)?.classList.remove('active');
@@ -2307,28 +2533,33 @@
         const state = getGraphPeriodState();
         const start = new Date(`${state.start}T00:00:00`);
         const end = new Date(`${state.end}T00:00:00`);
-        const labelArea = document.getElementById('graphLabels');
-        if (!labelArea || Number.isNaN(start.getTime()) || Number.isNaN(end.getTime())) return;
-        const total = end.getTime() - start.getTime();
+        if (Number.isNaN(start.getTime()) || Number.isNaN(end.getTime())) return;
+        const total = Math.max(0, end.getTime() - start.getTime());
         const labels = Array.from({ length: 5 }, (_, index) => {
             const date = new Date(start.getTime() + (total * index / 4));
-            const year = date.getFullYear();
             const month = String(date.getMonth() + 1).padStart(2, '0');
-            return `<span>${year}.${month}</span>`;
+            const day = String(date.getDate()).padStart(2, '0');
+            return `<span>${month}.${day}</span>`;
+        }).join('');
+        const labelArea = document.getElementById('graphLabels');
+        if (labelArea) labelArea.innerHTML = labels;
+        document.querySelectorAll('.metric-more-axis').forEach((area) => {
+            area.innerHTML = labels;
         });
-        labelArea.innerHTML = labels.join('');
     }
 
     function updateGraphPeriodSummary() {
         const state = getGraphPeriodState();
         const startDate = new Date(`${state.start}T00:00:00`);
         const endDate = new Date(`${state.end}T00:00:00`);
-        const days = Number.isNaN(startDate.getTime()) || Number.isNaN(endDate.getTime())
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const days = Number.isNaN(startDate.getTime())
             ? 0
-            : Math.max(0, Math.floor((endDate - startDate) / 86400000) + 1);
+            : Math.max(0, Math.floor((today - startDate) / 86400000) + 1);
         const daysEl = document.getElementById('graphPeriodDays');
         const rangeEl = document.getElementById('graphPeriodRange');
-        if (daysEl) daysEl.textContent = `비만약 시작한지 ${days.toLocaleString('ko-KR')}일`;
+        if (daysEl) daysEl.textContent = `비만약 시작한 지 ${days.toLocaleString('ko-KR')}일`;
         if (rangeEl) rangeEl.textContent = `${formatGraphPeriodDate(state.start)}~${formatGraphPeriodDate(state.end)}`;
         updateGraphPeriodLabels();
         renderGraphInjectionMarkers();
@@ -2362,6 +2593,7 @@
         const nextState = { start: startDate.value, end: today };
         localStorage.setItem(GRAPH_PERIOD_KEY, JSON.stringify(nextState));
         updateGraphPeriodSummary();
+        renderCurrentRegimenCard();
         closeGraphPeriodModal();
     }
 function getRecommendedSkeletalMuscle(heightCm) {
@@ -2410,6 +2642,18 @@ function getRecommendedSkeletalMuscle(heightCm) {
         if (select) select.value = String(dose || '');
     }
 
+    function mountInlineRecordForm() {
+        const host = document.getElementById("recordInlineHost");
+        const modal = document.getElementById("recordModal");
+        if (!host || !modal) return;
+        if (host.querySelector(".modal-window")) return;
+        const windowEl = modal.querySelector(".modal-window");
+        if (!windowEl) return;
+        windowEl.classList.add("inline-record-window");
+        host.appendChild(windowEl);
+        modal.style.display = "none";
+    }
+
     function openModal() {
         const last = loadLastInjectionSelection();
         if (last) {
@@ -2424,8 +2668,15 @@ function getRecommendedSkeletalMuscle(heightCm) {
             dateEl.max = formatDateKey(new Date());
             dateEl.value = formatDateKey(new Date());
         }
-        document.getElementById('recordModal').style.display = 'flex';
+        const modal = document.getElementById('recordModal');
+        const host = document.getElementById('recordInlineHost');
+        if (host && host.querySelector('.modal-window')) {
+            host.style.display = 'block';
+        } else if (modal) {
+            modal.style.display = 'flex';
+        }
         toggleOptionalDiarySection(false);
+        restoreLastInjectionSite();
     }
     function toggleOptionalDiarySection(forceOpen) {
         const body = document.getElementById('optionalDiaryBody');
@@ -2435,7 +2686,13 @@ function getRecommendedSkeletalMuscle(heightCm) {
         body.style.display = open ? 'block' : 'none';
         if (chevron) chevron.textContent = open ? '⌃' : '⌄';
     }
-    function closeModal() { document.getElementById('recordModal').style.display = 'none'; editingFeedCard = null; }
+    function closeModal() {
+        editingFeedCard = null;
+        const modal = document.getElementById('recordModal');
+        const host = document.getElementById('recordInlineHost');
+        if (modal) modal.style.display = 'none';
+        if (host && host.querySelector('.modal-window')) host.style.display = 'none';
+    }
     function openRecordPointGuide() { document.getElementById('recordPointGuideModal').style.display = 'flex'; }
     function closeRecordPointGuide() { document.getElementById('recordPointGuideModal').style.display = 'none'; }
     async function openShareModal() {
@@ -3176,6 +3433,25 @@ function getRecommendedSkeletalMuscle(heightCm) {
         return row ? Array.from(row.children).slice(1).map((node) => node.innerText).join(' ').trim() : '';
     }
 
+    function getSelectedInjectionSite() {
+        const selected = document.querySelector('#injectionSitePool .injection-site-item.selected');
+        return selected?.dataset.site || '선택 안 함';
+    }
+
+    function selectInjectionSite(button) {
+        document.querySelectorAll('#injectionSitePool .injection-site-item').forEach((item) => item.classList.remove('selected'));
+        if (button) button.classList.add('selected');
+        try { localStorage.setItem('incareLastInjectionSite', getSelectedInjectionSite()); } catch (_) {}
+    }
+
+    function restoreLastInjectionSite(value) {
+        let site = value || '선택 안 함';
+        if (!value) {
+            try { site = localStorage.getItem('incareLastInjectionSite') || '선택 안 함'; } catch (_) {}
+        }
+        const button = Array.from(document.querySelectorAll('#injectionSitePool .injection-site-item')).find((item) => item.dataset.site === site) || document.querySelector('#injectionSitePool .injection-site-item[data-site="선택 안 함"]');
+        if (button) selectInjectionSite(button);
+    }
     function getSiteOptionValue(label) {
         const map = {
             '우측 허벅지': '허벅지 - 오른쪽',
@@ -3210,8 +3486,10 @@ function getRecommendedSkeletalMuscle(heightCm) {
         if (doseEl) doseEl.value = doseValue;
         document.querySelectorAll('#recordModal .tag-item').forEach((el) => el.classList.remove('selected'));
         const sideMemo = getFeedMemoValue(card, '부작용');
+        const siteMemo = getFeedMemoValue(card, '주사 부위');
         const dietMemo = getFeedMemoValue(card, '식단');
         const exerciseMemo = getFeedMemoValue(card, '운동');
+        restoreLastInjectionSite(siteMemo && siteMemo !== '선택 안 함' ? siteMemo : '선택 안 함');
         if (sideMemo) {
             const sideTag = Array.from(document.querySelectorAll('#recordModal .tag-item')).find((el) => el.innerText.trim() === sideMemo);
             if (sideTag) sideTag.classList.add('selected');
@@ -3246,9 +3524,11 @@ function getRecommendedSkeletalMuscle(heightCm) {
         const exerciseComplete = exercise.length >= 5;
         const optionalComplete = sideSelected && dietComplete && exerciseComplete;
         const sideEffectStr = selectedSideEffects.length ? selectedSideEffects.join(', ') : (sideSelected ? '없음' : '미입력');
+        const injectionSite = getSelectedInjectionSite();
+        try { localStorage.setItem('incareLastInjectionSite', injectionSite); } catch (_) {}
         localStorage.setItem(LAST_SIDE_EFFECT_PAYLOAD_KEY, JSON.stringify({ effects: selectedSideEffects, customText: customSideText }));
         saveLastInjectionSelection(med, dose);
-        injectionCalendarRecords[recordDateValue] = { med, dose: dose + ' mg', site: '', side: sideEffectStr, measurementDate: recordDateValue, isUserRecord: true };
+        injectionCalendarRecords[recordDateValue] = { med, dose: dose + ' mg', site: injectionSite === '선택 안 함' ? '' : injectionSite, side: sideEffectStr, measurementDate: recordDateValue, isUserRecord: true };
 
         const recordDateDisplay = recordDate.getFullYear() + '년 ' + String(recordDate.getMonth() + 1).padStart(2, '0') + '월 ' + String(recordDate.getDate()).padStart(2, '0') + '일';
         const recordDateShort = String(recordDate.getMonth() + 1).padStart(2, '0') + '/' + String(recordDate.getDate()).padStart(2, '0');
@@ -3260,6 +3540,7 @@ function getRecommendedSkeletalMuscle(heightCm) {
             const rows = Array.from(editingFeedCard.querySelectorAll('.memo-row'));
             const setMemo = (label, value) => { const row = rows.find((item) => item.querySelector('.memo-label')?.innerText.trim() === label); if (row?.children[1]) row.children[1].innerText = value; };
             setMemo('부작용', customSideText || sideEffectStr);
+            setMemo('주사 부위', injectionSite);
             setMemo('식단', diet || '미입력');
             setMemo('운동', exercise || '미입력');
             editingFeedCard = null;
@@ -3300,7 +3581,7 @@ function getRecommendedSkeletalMuscle(heightCm) {
         newItem.innerHTML = '<div class="feed-date">' + recordDateDisplay + ' (추가됨)</div>' +
             '<div class="feed-med"><span>💉 ' + escapeHtml(med) + ' ' + escapeHtml(dose) + ' mg</span></div>' +
             '<div class="metric-chip-row"><div class="metric-chip"><span class="label">체중</span><span class="value">미입력</span></div><div class="metric-chip"><span class="label">골격근량</span><span class="value">미입력</span></div><div class="metric-chip"><span class="label">체지방량</span><span class="value">미입력</span></div></div>' +
-            '<div class="feed-memo"><div class="memo-row"><span class="memo-label">부작용</span><span>' + escapeHtml(sideDisplay) + '</span></div><div class="memo-row"><span class="memo-label">식단</span><span>' + escapeHtml(diet || '미입력') + '</span></div><div class="memo-row"><span class="memo-label">운동</span><span>' + escapeHtml(exercise || '미입력') + '</span></div></div>' +
+            '<div class="feed-memo"><div class="memo-row"><span class="memo-label">부작용</span><span>' + escapeHtml(sideDisplay) + '</span></div><div class="memo-row"><span class="memo-label">주사 부위</span><span>' + escapeHtml(injectionSite) + '</span></div><div class="memo-row"><span class="memo-label">식단</span><span>' + escapeHtml(diet || '미입력') + '</span></div><div class="memo-row"><span class="memo-label">운동</span><span>' + escapeHtml(exercise || '미입력') + '</span></div></div>' +
             '<div class="feed-actions"><button type="button" class="feed-action-btn" onclick="editFeedRecord(this.closest(&quot;.history-feed-item&quot;))">수정</button><button type="button" class="feed-action-btn delete" onclick="deleteFeedRecord(this.closest(&quot;.history-feed-item&quot;))">삭제</button></div>';
         if (feedArea) feedArea.insertBefore(newItem, feedArea.firstChild);
         if (alreadyRecordedThisWeek) alert('🎉 투약 기록이 저장되었습니다. 이번 주는 이미 리워드 포인트가 적립되어 이번 저장은 0p예요.');
@@ -3364,6 +3645,11 @@ function getRecommendedSkeletalMuscle(heightCm) {
         return { ok: true, message: '' };
     }
     let onboardingStep = 0;
+    let onboardingMode = 'initial';
+
+    function getOnboardingLastStep() {
+        return onboardingMode === 'edit' ? 3 : 4;
+    }
 
     function getOnboardingElements() {
         return {
@@ -3374,10 +3660,9 @@ function getRecommendedSkeletalMuscle(heightCm) {
             nextBtn: document.getElementById('onboardingNextBtn'),
             med: document.getElementById('onboardingMed'),
             dose: document.getElementById('onboardingDose'),
+            penStateRadios: Array.from(document.querySelectorAll('input[name="onboardingPenState"]')),
+            penUseCount: document.getElementById('onboardingPenUseCount'),
             startDate: document.getElementById('onboardingStartDate'),
-            goalWeight: document.getElementById('onboardingGoalWeight'),
-            goalMuscle: document.getElementById('onboardingGoalMuscle'),
-            goalFat: document.getElementById('onboardingGoalFat'),
             skipBtn: document.getElementById('onboardingSkipBtn'),
             actions: document.getElementById('onboardingActions'),
             defaultInfo: document.getElementById('onboardingDefaultInfo'),
@@ -3387,34 +3672,136 @@ function getRecommendedSkeletalMuscle(heightCm) {
 
     function renderOnboardingStep() {
         const el = getOnboardingElements();
-        el.steps.forEach((step, idx) => step.classList.toggle('active', idx === onboardingStep));
-        const totalSteps = Math.max(1, el.steps.length - 1);
-        const completedSteps = Math.max(0, Math.min(totalSteps, onboardingStep));
+        const lastStep = getOnboardingLastStep();
+
+        el.steps.forEach((step, idx) => {
+            if (onboardingMode === 'edit' && (idx === 0 || idx === 4)) {
+                step.style.display = 'none';
+                step.classList.remove('active');
+                return;
+            }
+            step.style.display = '';
+            step.classList.toggle('active', idx === onboardingStep);
+        });
+
+        const totalSteps = onboardingMode === 'edit' ? 3 : 4;
+        const completedSteps = onboardingMode === 'edit'
+            ? Math.max(0, Math.min(totalSteps, onboardingStep - 1))
+            : Math.max(0, Math.min(totalSteps, onboardingStep));
         const activeCount = Math.max(1, completedSteps);
-        el.progress.forEach((dot, idx) => dot.classList.toggle('active', idx < activeCount));
-        if (el.backBtn) el.backBtn.style.display = onboardingStep === 0 ? 'none' : '';
-        if (el.nextBtn) el.nextBtn.innerText = onboardingStep === 0 ? '인케어 시작하기' : (onboardingStep === el.steps.length - 1 ? '시작하기' : '다음');
-        if (el.skipBtn) el.skipBtn.style.display = onboardingStep === 1 ? 'inline-flex' : 'none';
+
+        el.progress.forEach((dot, idx) => {
+            dot.style.display = onboardingMode === 'edit' && idx === 3 ? 'none' : '';
+            dot.classList.toggle('active', idx < activeCount);
+        });
+
+        const hideBack = onboardingMode === 'edit' ? onboardingStep <= 1 : onboardingStep === 0;
+        if (el.backBtn) el.backBtn.style.display = hideBack ? 'none' : '';
+
+        if (el.nextBtn) {
+            if (onboardingMode !== 'edit' && onboardingStep === 0) el.nextBtn.innerText = '인케어 시작하기';
+            else if (onboardingStep === lastStep) el.nextBtn.innerText = onboardingMode === 'edit' ? '저장하기' : '시작하기';
+            else el.nextBtn.innerText = '다음';
+        }
+
+        if (el.skipBtn) el.skipBtn.style.display = (onboardingMode !== 'edit' && onboardingStep === 1) ? 'inline-flex' : 'none';
         const progressWrap = document.getElementById('onboardingProgress');
-        if (progressWrap) progressWrap.style.display = onboardingStep >= 1 ? 'flex' : 'none';
-        if (el.actions) el.actions.classList.toggle('intro-mode', onboardingStep === 0);
+        if (progressWrap) progressWrap.style.display = (onboardingMode === 'edit' || onboardingStep >= 1) ? 'flex' : 'none';
+
+        if (el.actions) el.actions.classList.toggle('intro-mode', onboardingMode !== 'edit' && onboardingStep === 0);
         const sheet = document.querySelector('.onboarding-sheet');
         if (sheet) {
-            sheet.classList.toggle('intro-mode-layout', onboardingStep === 0);
-            sheet.classList.toggle('input-mode-layout', onboardingStep >= 1);
+            sheet.classList.toggle('intro-mode-layout', onboardingMode !== 'edit' && onboardingStep === 0);
+            sheet.classList.toggle('input-mode-layout', onboardingMode === 'edit' || onboardingStep >= 1);
         }
-        if (el.defaultInfo) el.defaultInfo.style.display = onboardingStep === 0 ? 'none' : 'block';
+        if (el.defaultInfo) {
+            el.defaultInfo.style.display = (onboardingMode !== 'edit' && onboardingStep === 0) ? 'none' : 'block';
+            el.defaultInfo.innerText = onboardingMode === 'edit' ? '변경한 정보는 바로 현재 투약 설정에 반영돼요.' : '입력한 정보는 투약 기록 기본값에 반영되며, 이후에도 수정할 수 있어요.';
+        }
+        updateOnboardingPenUi();
+    }
+function getSelectedPenState() {
+        const checked = document.querySelector('input[name="onboardingPenState"]:checked');
+        return checked ? checked.value : 'new';
     }
 
+    function updateOnboardingPenUi() {
+        const useCountEl = document.getElementById('onboardingPenUseCount');
+        const titleEl = document.getElementById('onboardingPenTitle');
+        const subEl = document.getElementById('onboardingPenSub');
+        if (!useCountEl) return;
+        const state = getSelectedPenState();
+        const med = (document.getElementById('onboardingMed')?.value || '선택한 약').replace(/\s+/g, ' ').trim();
+        const dose = document.getElementById('onboardingDose')?.value || '';
+        if (titleEl) titleEl.innerText = `${med} ${dose ? dose + 'mg' : ''} 펜 상태를 알려주세요.`.trim();
+        if (state === 'used') {
+            useCountEl.style.display = 'block';
+            if (subEl) subEl.innerText = '현재 펜에서 몇 번째 투약인지 선택해 주세요.';
+        } else {
+            useCountEl.style.display = 'none';
+            if (subEl) subEl.innerText = '이번 펜은 아직 사용 전인지, 이미 사용 중인지 선택해 주세요.';
+        }
+    }
+
+    function renderCurrentRegimenCard() {
+        let profile = {};
+        try { profile = JSON.parse(localStorage.getItem(ONBOARDING_PROFILE_KEY) || '{}'); } catch (_) {}
+        const mainEl = document.getElementById('currentRegimenMain');
+        const subEl = document.getElementById('currentRegimenSub');
+        if (!mainEl || !subEl) return;
+
+        const med = profile.med || '마운자로(Mounjaro)';
+        const dose = (profile.dose ?? 0.25);
+        mainEl.innerText = `${med} · ${dose}mg`;
+
+        const isUsed = (profile.penState || 'new') === 'used';
+        const usedCount = isUsed ? Math.min(PEN_TOTAL_USES, Math.max(0, Number(profile.penUsedCount || 1))) : 0;
+        const remainCount = Math.max(0, PEN_TOTAL_USES - usedCount);
+        const usageLabel = isUsed ? '현재 사용 중인 펜' : '새 펜으로 시작했어요';
+        const segments = Array.from({ length: PEN_TOTAL_USES }, (_, index) => `<span class="regimen-usage-segment${index < usedCount ? ' is-used' : ''}" aria-hidden="true"></span>`).join('');
+        subEl.innerHTML = `<div class="regimen-usage"><div class="regimen-usage-copy"><span class="regimen-usage-label">${usageLabel}</span><strong class="regimen-usage-count"><span class="regimen-usage-pill">사용 ${usedCount}회</span><span class="regimen-usage-pill remain">남은 ${remainCount}회</span></strong></div><div class="regimen-usage-bar" role="progressbar" aria-label="펜 사용 진행률" aria-valuemin="0" aria-valuemax="${PEN_TOTAL_USES}" aria-valuenow="${usedCount}">${segments}</div></div>`;
+    }
+
+    function openOnboardingEdit() {
+        openChangeRegimenConfirm();
+    }
+
+    function openChangeRegimenConfirm() {
+        let profile = {};
+        try { profile = JSON.parse(localStorage.getItem(ONBOARDING_PROFILE_KEY) || '{}'); } catch (_) {}
+        const med = profile.med || '현재 주사제';
+        const dose = profile.dose != null ? `${profile.dose}mg` : '';
+        const msg = document.getElementById('changeRegimenConfirmMsg');
+        if (msg) {
+            msg.innerHTML = `현재 <b>${med} ${dose}</b> 기준으로 기록이 이어지고 있어요.<br><br>` +
+                `설정을 바꾸면 기존 기록은 그대로 유지되고, 이후부터는 새 설정 기준으로 저장됩니다.`;
+        }
+        const modal = document.getElementById('changeRegimenConfirmModal');
+        if (modal) modal.style.display = 'flex';
+    }
+
+    function closeChangeRegimenConfirm() {
+        const modal = document.getElementById('changeRegimenConfirmModal');
+        if (modal) modal.style.display = 'none';
+    }
+
+    function confirmOpenOnboardingEdit() {
+        closeChangeRegimenConfirm();
+        initOnboardingFlow(true, 'edit');
+    }
     function saveOnboardingProfile() {
         const el = getOnboardingElements();
         const today = formatDateKey(new Date());
-        const startDate = el.startDate?.value || DEFAULT_GRAPH_PERIOD.start;
         let existingProfile = {};
         try { existingProfile = JSON.parse(localStorage.getItem(ONBOARDING_PROFILE_KEY) || '{}'); } catch (_) {}
+        const startDate = onboardingMode === 'edit'
+            ? (existingProfile.startDate || DEFAULT_GRAPH_PERIOD.start)
+            : (el.startDate?.value || existingProfile.startDate || DEFAULT_GRAPH_PERIOD.start);
         const profile = {
             med: el.med?.value || existingProfile.med || '마운자로(Mounjaro)',
             dose: Number(el.dose?.value || existingProfile.dose || 0.25),
+            penState: getSelectedPenState(),
+            penUsedCount: Number(el.penUseCount?.value || existingProfile.penUsedCount || 1),
             startDate,
             goalWeight: Number(existingProfile.goalWeight || 55.0),
             goalMuscle: Number(existingProfile.goalMuscle || 25.5),
@@ -3429,6 +3816,7 @@ function getRecommendedSkeletalMuscle(heightCm) {
         if (typeof setDoseSliderByValue === 'function') setDoseSliderByValue(profile.dose);
 
         updateGraphPeriodSummary();
+        renderCurrentRegimenCard();
     }
 
     function closeOnboardingFlow() {
@@ -3452,8 +3840,15 @@ function getRecommendedSkeletalMuscle(heightCm) {
             el.dose?.focus();
             return;
         }
-        if (!(el.startDate?.value || '').trim()) {
+        if (getSelectedPenState() === 'used' && !(el.penUseCount?.value || '').trim()) {
             onboardingStep = 3;
+            renderOnboardingStep();
+            alert('현재 펜 사용 회차를 선택해 주세요.');
+            el.penUseCount?.focus();
+            return;
+        }
+        if (!(el.startDate?.value || '').trim()) {
+            onboardingStep = 4;
             renderOnboardingStep();
             alert('비만약 시작일을 선택해 주세요.');
             el.startDate?.focus();
@@ -3556,9 +3951,10 @@ function getRecommendedSkeletalMuscle(heightCm) {
             el.classList.toggle('active', el.getAttribute('data-metric-graph') === nextMetric);
         });
     }
-    function initOnboardingFlow(forceOpen = false) {
+    function initOnboardingFlow(forceOpen = false, mode = 'initial') {
         const el = getOnboardingElements();
         if (!el.overlay) return;
+        onboardingMode = mode || 'initial';
         const forceOnboarding = forceOpen || new URLSearchParams(window.location.search).get('onboarding') === '1' || window.location.hash === '#onboarding';
         let skippedSession = false;
         try { skippedSession = sessionStorage.getItem(ONBOARDING_SKIP_SESSION_KEY) === '1'; } catch (_) {}
@@ -3566,14 +3962,29 @@ function getRecommendedSkeletalMuscle(heightCm) {
             closeOnboardingFlow();
             return;
         }
+        let existingProfile = {};
+        try { existingProfile = JSON.parse(localStorage.getItem(ONBOARDING_PROFILE_KEY) || '{}'); } catch (_) {}
+        if (el.med && existingProfile.med) el.med.value = existingProfile.med;
+        if (el.dose && existingProfile.dose != null) el.dose.value = String(existingProfile.dose);
+        if (el.startDate && existingProfile.startDate) el.startDate.value = existingProfile.startDate;
+        const penState = existingProfile.penState || 'new';
+        const penStateEl = document.querySelector(`input[name="onboardingPenState"][value="${penState}"]`);
+        if (penStateEl) penStateEl.checked = true;
+        if (el.penUseCount && existingProfile.penUsedCount) el.penUseCount.value = String(existingProfile.penUsedCount);
+
         el.overlay.style.display = 'flex';
-        onboardingStep = 0;
+        onboardingStep = onboardingMode === 'edit' ? 1 : 0;
         renderOnboardingStep();
 
         if (el.skipBtn) el.skipBtn.onclick = function () {
             try { sessionStorage.setItem(ONBOARDING_SKIP_SESSION_KEY, '1'); } catch (_) {}
             closeOnboardingFlow();
         };
+        if (el.med) el.med.onchange = updateOnboardingPenUi;
+        if (el.dose) el.dose.onchange = updateOnboardingPenUi;
+        if (Array.isArray(el.penStateRadios)) {
+            el.penStateRadios.forEach((radio) => { radio.onchange = updateOnboardingPenUi; });
+        }
         if (el.backBtn) el.backBtn.onclick = function () {
             if (onboardingStep > 0) {
                 onboardingStep -= 1;
@@ -3581,7 +3992,7 @@ function getRecommendedSkeletalMuscle(heightCm) {
             }
         };
         if (el.nextBtn) el.nextBtn.onclick = function () {
-            if (onboardingStep === 0) {
+            if (onboardingMode !== 'edit' && onboardingStep === 0) {
                 onboardingStep = 1;
                 renderOnboardingStep();
                 return;
@@ -3596,12 +4007,18 @@ function getRecommendedSkeletalMuscle(heightCm) {
                 el.dose?.focus();
                 return;
             }
-            if (onboardingStep === 3 && !(el.startDate?.value || '').trim()) {
+            if (onboardingStep === 3 && getSelectedPenState() === 'used' && !(el.penUseCount?.value || '').trim()) {
+                alert('현재 펜 사용 회차를 선택해 주세요.');
+                el.penUseCount?.focus();
+                return;
+            }
+            const lastStep = getOnboardingLastStep();
+            if (onboardingMode !== 'edit' && onboardingStep === 4 && !(el.startDate?.value || '').trim()) {
                 alert('비만약 시작일을 선택해 주세요.');
                 el.startDate?.focus();
                 return;
             }
-            if (onboardingStep === 3) {
+            if (onboardingStep === lastStep) {
                 finishOnboarding();
                 return;
             }
@@ -3611,7 +4028,7 @@ function getRecommendedSkeletalMuscle(heightCm) {
     }
 window.reopenOnboarding = function () {
         localStorage.removeItem('incareOnboardingProfile');
-        initOnboardingFlow(true);
+        initOnboardingFlow(true, 'initial');
     };
 
     window.addEventListener('load', function () {
@@ -3624,12 +4041,14 @@ window.reopenOnboarding = function () {
         selectMetricGraph('weight');
         initGraphInjectionPopovers();
         updateGraphPeriodSummary();
+        renderCurrentRegimenCard();
         renderGraphInjectionMarkers();
         setDoseSliderByValue(0.25);
         updateIeScoreComparison(document.getElementById('ieScoreValue') ? document.getElementById('ieScoreValue').innerText : 82);
         buildIeScoreLeaderboard();
         setRewardTotalPoints(getRewardTotalPoints());
         initOnboardingFlow();
+        // 인라인 기록 폼 비노출 정책으로 마운트 생략
         updateTodaySideEffectPreview();
         document.querySelectorAll('.metric-toggle').forEach((el) => el.addEventListener('change', previewMetricSetup));
         syncMetricVisibility(false);
@@ -3642,6 +4061,105 @@ window.reopenOnboarding = function () {
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
