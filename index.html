@@ -3608,6 +3608,7 @@ function getRecommendedSkeletalMuscle(heightCm) {
         renderGraphInjectionMarkers();
     }
     const ONBOARDING_PROFILE_KEY = 'incareOnboardingProfile';
+    const ONBOARDING_ENTRY_SEEN_KEY = 'incareOnboardingEntrySeen';
     const ONBOARDING_NICKNAME_SET_KEY = 'incareNicknameSet';
     const ONBOARDING_SKIP_SESSION_KEY = 'incareOnboardingSkippedSession';
 
@@ -3955,7 +3956,10 @@ function getSelectedPenState() {
         const el = getOnboardingElements();
         if (!el.overlay) return;
         onboardingMode = mode || 'initial';
-        const forceOnboarding = forceOpen || new URLSearchParams(window.location.search).get('onboarding') === '1' || window.location.hash === '#onboarding';
+        let forceOnboarding = forceOpen || new URLSearchParams(window.location.search).get('onboarding') === '1' || window.location.hash === '#onboarding';
+        let firstEntry = false;
+        try { firstEntry = onboardingMode !== 'edit' && !localStorage.getItem(ONBOARDING_ENTRY_SEEN_KEY); } catch (_) {}
+        if (firstEntry) forceOnboarding = true;
         let skippedSession = false;
         try { skippedSession = sessionStorage.getItem(ONBOARDING_SKIP_SESSION_KEY) === '1'; } catch (_) {}
         if ((skippedSession || localStorage.getItem(ONBOARDING_PROFILE_KEY)) && !forceOnboarding) {
@@ -3973,6 +3977,7 @@ function getSelectedPenState() {
         if (el.penUseCount && existingProfile.penUsedCount) el.penUseCount.value = String(existingProfile.penUsedCount);
 
         el.overlay.style.display = 'flex';
+        if (onboardingMode !== 'edit') { try { localStorage.setItem(ONBOARDING_ENTRY_SEEN_KEY, '1'); } catch (_) {} }
         onboardingStep = onboardingMode === 'edit' ? 1 : 0;
         renderOnboardingStep();
 
@@ -4061,6 +4066,8 @@ window.reopenOnboarding = function () {
 </script>
 </body>
 </html>
+
+
 
 
 
